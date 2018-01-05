@@ -55,8 +55,8 @@
   }
   .more-cont {
   	position: absolute;
-  	top: 0;
-  	right: 0;
+  	top: .2rem;
+  	right: .2rem;
   }
   .more {
   	display: block;
@@ -66,7 +66,8 @@
   	background: #fff;
   	color: #3cd191;
   	text-align: center;
-  	font-size: .5rem;
+    line-height: .48rem;
+  	font-size: .48rem;
   	font-weight: 600;
   }
 </style>

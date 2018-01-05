@@ -1,0 +1,20 @@
+{
+	"ret":true,
+	"data":[{
+			"id":"01",
+			"imgUrl":"../../../static/img/01.png",
+			"desc":"行走"
+		},{
+			"id":"02",
+			"imgUrl":"../../../static/img/02.png",
+			"desc":"跑步"
+		},{
+			"id":"03",
+			"imgUrl":"../../../static/img/03.png",
+			"desc":"健身"
+		},{
+			"id":"04",
+			"imgUrl":"../../../static/img/04.png",
+			"desc":"骑行"
+		}]
+}
