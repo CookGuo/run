@@ -1,5 +1,6 @@
 <template>
   <div>
+    <container></container>
   	<install></install>
     <motion-data></motion-data>
     <bottom></bottom>
@@ -9,13 +10,15 @@
 <script>
 import Install from './install'
 import MotionData from './data'
+import Container from './container'
 import Bottom from 'components/common/bottom'
 export default {
   name: 'index',
   components: {
     Bottom,
     Install,
-    MotionData
+    MotionData,
+    Container
   }
 }
 </script>
