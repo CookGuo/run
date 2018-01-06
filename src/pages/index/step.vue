@@ -8,7 +8,6 @@
       <span class="tdy-number">2175</span>
       <span class="goal-number">今日目标步数3000</span>
       <span class="goal">燃烧36大卡≈跑步1.4公里</span>
-      <index-canvas></index-canvas> 
     </div>
     <div class="sport-list">
       <div class="sport" v-for="item in indexList">
@@ -26,12 +25,8 @@
 </template>
 
 <script>
-  import IndexCanvas from  './canvas.vue'
   export default {
     name: 'index-step',
-    components: {
-      IndexCanvas
-    },
     props: {
       indexList: Array
     }
@@ -64,7 +59,8 @@
     height: 3.6rem;
     width: 3.6rem;
     top: 1rem;
-    right: 27vw;
+    left: 50%;
+    margin-left: -1.8rem;
     border-radius: 50%;
     background: rgba(216, 246, 233, .5);
   }
@@ -121,7 +117,7 @@
   .bottom-btn span {
     background: #3cd191;
     border-radius: .25rem;
-    line-height: .62rem;
+    line-height: .72rem;
     width: 2.3rem;
     font-size: .36rem;
     text-align: center;

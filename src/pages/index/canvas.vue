@@ -1,42 +1,40 @@
 <template>
   <div class="index-canvas">
-    <div class="bet" ref="bet"></div>
+    <canvas class="canvas" ref="canvas" width="250" height="250"></canvas>
   </div>
 </template>
 
 <script>
   export default {
     name: 'index-step',
-    data () {
-      return {
-        number: 44
-      }
-    },
     mounted () {
-      console.log(this.list)
-    },
-    computed: {
-      list () {
-        const arr = []
-        for (let i = 0; i < this.number; i++) {
-          arr.push(this.$refs.bet)
-        }
-        return arr
+      let ctx = this.$refs.canvas.getContext('2d')
+      ctx.save()
+      ctx.translate(125, 125)
+      ctx.rotate((45 / 180) * Math.PI)
+      var angle = (6 / 180) * Math.PI
+      for (var i = 0; i < 44; i++) {
+        ctx.beginPath()
+        ctx.rotate(angle)
+        ctx.moveTo(0, 100)
+        ctx.lineTo(0, 115)
+        ctx.lineCap = 'round'
+        ctx.lineWidth = '6'
+        ctx.strokeStyle = '#3cd191'
+        ctx.stroke()
       }
+      ctx.restore()
     }
   }
 </script>
 
   <style scoped>
-  .bet {
+  .canvas {
     position: absolute;
-    background: blue;
-    left: 0;
-    top: -.24rem;
-    height: .12rem;
-    width: .45rem;
-    transform-origin: 50% 50%;
-    transform: rotate(90deg);
-    border-radius: .1rem;
+    top: 3.8rem;
+    left: 50%;
+    margin-top: -125px;
+    margin-left: -125px;
+    height: 250px;
   }
 </style>
