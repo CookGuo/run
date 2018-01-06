@@ -28,7 +28,7 @@
     components: {
       IndexHeader,
       IndexStep,
-      IndexCanvas
+      IndexCanvas,
       Bottom,
       Install,
       MotionData
@@ -53,7 +53,4 @@
 </script>
 
 <style scoped>
-  .index {
-    position: relative;
-  }
 </style>
