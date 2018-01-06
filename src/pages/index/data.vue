@@ -3,7 +3,7 @@
     <div class="data-info">
       <div class="data-top">
         <div class="data-title">一周运动数据</div>
-        <div class="data-details">详情 >></div>
+        <div class="data-details">详情>></div>
       </div>
       <div class="data-con">
         <div class="con-item">
@@ -65,41 +65,44 @@
 
 <style>
   .data{
-    height: 2.8rem;
+    width: 100%;
+    position: absolute;
+    top: 9.2rem;
+    bottom: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fff;
+    background: red;
     border-top: 1px solid #666;
     border-bottom: 1px solid #666;
   }
   .data-info{
-    width: 7.1rem;
-    height: 2.6rem;
+    width: 100%;
+    height: 100%;
     background: #e8e7e7;
     border-radius: .1rem;
   }
   .data-top{
-    widows: 100%;
-    line-height: .4rem;
-    height: .4rem;
-    padding: 0 .2rem;
+    line-height: .6rem;
+    height: .6rem;
+    padding: 0 .2rem 0 .2rem;
     font-size: .22rem;
   }
   .data-title{
     float: left;
-    color: #333333;
   }
   .data-details{
     float: right;
     color: #3cd191;
   }
-   .data-con{
+  .data-con{
     display: flex;
     text-align: center;
+    height: 84%;
   }
   .con-item{
     display: flex;
+    height: 95%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -107,7 +110,7 @@
   }
   .data-process{
     width: .2rem;
-    height: 1.5rem;
+    height: 96%;
     border: 1px solid #666666;
     border-radius: .1rem;
     position: relative;
