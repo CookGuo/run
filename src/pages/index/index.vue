@@ -4,7 +4,7 @@
     <index-step :indexList="indexList"></index-step>
     <index-canvas></index-canvas>
   	<install></install>
-    <motion-data></motion-data>
+    <motion-data :movement='movement'></motion-data>
     <bottom></bottom>
   </div>
 </template>
@@ -21,7 +21,8 @@
     name: 'index',
     data () {
       return {
-        indexList: []
+        indexList: [],
+        movement: []
       }
     },
     components: {
@@ -42,6 +43,7 @@
         res = (res.data) ? res.data : null
         if (res) {
           this.indexList = res.data.travel
+          this.movement = res.data.movement
         }
       },
       handleIndexAjaxErr (err) {

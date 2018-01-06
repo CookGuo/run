@@ -6,61 +6,24 @@
         <div class="data-details">详情>></div>
       </div>
       <div class="data-con">
-        <div class="con-item">
-          <div class="data-num">1.9K</div>
+        <div class="con-item" v-for='item in movement'>
+          <div class="data-num">{{item.num}}K</div>
           <div class="data-process">
-            <div class="data-bar"></div>
+            <div class="data-bar" ref='bar'></div>
           </div>
-          一
-        </div>
-        <div class="con-item">
-          <div class="data-num">1.9K</div>
-          <div class="data-process">
-            <div class="data-bar"></div>
-          </div>
-          二
-        </div>
-        <div class="con-item">
-          <div class="data-num">1.9K</div>
-          <div class="data-process">
-            <div class="data-bar"></div>
-          </div>
-          三
-        </div>
-        <div class="con-item">
-          <div class="data-num">1.9K</div>
-          <div class="data-process">
-            <div class="data-bar"></div>
-          </div>
-          四
-        </div>
-        <div class="con-item">
-          <div class="data-num">1.9K</div>
-          <div class="data-process">
-            <div class="data-bar"></div>
-          </div>
-          五
-        </div>
-        <div class="con-item">
-          <div class="data-num">1.9K</div>
-          <div class="data-process">
-            <div class="data-bar"></div>
-          </div>
-          六
-        </div>
-        <div class="con-item">
-          <div class="data-num">1.9K</div>
-          <div class="data-process">
-            <div class="data-bar"></div>
-          </div>
-          日
+          {{item.week}}
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-  export default {}
+  export default {
+    name: 'index-data',
+    props: {
+      movement: Array
+    }
+  }
 </script>
 
 <style>
@@ -72,7 +35,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: red;
+    background: #fff;
     border-top: 1px solid #666;
     border-bottom: 1px solid #666;
   }
@@ -125,7 +88,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: .4rem;
+    height: 60%;
     background: #00aeed;
     border-radius: .1rem;
   }
