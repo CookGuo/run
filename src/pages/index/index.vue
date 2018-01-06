@@ -6,7 +6,6 @@
   	<install></install>
     <motion-data></motion-data>
     <bottom></bottom>
-
   </div>
 </template>
 
@@ -42,7 +41,7 @@
       handleIndexAjaxSucc (res) {
         res = (res.data) ? res.data : null
         if (res) {
-          this.indexList = res.data
+          this.indexList = res.data.travel
         }
       },
       handleIndexAjaxErr (err) {

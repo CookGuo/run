@@ -1,6 +1,7 @@
 {
 	"ret":true,
-	"data":[{
+	"data":{
+		"travel": [{
 			"id":"01",
 			"imgUrl":"../../../static/img/01.png",
 			"desc":"行走"
@@ -17,4 +18,5 @@
 			"imgUrl":"../../../static/img/04.png",
 			"desc":"骑行"
 		}]
+	}
 }
