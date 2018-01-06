@@ -3,6 +3,10 @@
     <index-header></index-header>
     <index-step :indexList="indexList"></index-step>
     <index-canvas></index-canvas>
+  	<install></install>
+    <motion-data></motion-data>
+    <bottom></bottom>
+
   </div>
 </template>
 
@@ -11,6 +15,9 @@
   import IndexCanvas from './canvas.vue'
   import IndexHeader from './header.vue'
   import IndexStep from './step.vue'
+  import Install from './install'
+  import MotionData from './data'
+  import Bottom from 'components/common/bottom'
   export default {
     name: 'index',
     data () {
@@ -22,6 +29,9 @@
       IndexHeader,
       IndexStep,
       IndexCanvas
+      Bottom,
+      Install,
+      MotionData
     },
     mounted () {
       axios.get('api/index.json')
@@ -34,7 +44,6 @@
         if (res) {
           this.indexList = res.data
         }
-        console.log(this.indexList[0].imgUrl)
       },
       handleIndexAjaxErr (err) {
         console.log(err)
