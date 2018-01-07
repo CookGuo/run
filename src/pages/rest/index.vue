@@ -3,11 +3,13 @@
     <rest-header></rest-header>
     <rest-video :videoList="videoList" v-show="false"></rest-video>
     <rest-recreation :reaVideo="reaVideo" :reaList="reaList"></rest-recreation>
+    <rest-bottom></rest-bottom>
   </div>
 </template>
 
 <script>
   import RestHeader from 'components/common/header.vue'
+  import RestBottom from 'components/common/bottom.vue'
   import RestRecreation from './recreation.vue'
   import RestVideo from './video.vue'
   import axios from 'axios'
@@ -23,7 +25,8 @@
     components: {
       RestHeader,
       RestVideo,
-      RestRecreation
+      RestRecreation,
+      RestBottom
     },
     mounted () {
       axios.get('/api/rest.json')
