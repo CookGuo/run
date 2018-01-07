@@ -19,10 +19,12 @@
       朋友圈
     </div>
     <div class="item">
-      <div class="item-img">
-        <img class="img" src="../ui/bottom4.png">
-      </div>
-      休息区
+      <router-link to="/rest">
+        <div class="item-img">
+          <img class="img" src="../ui/bottom4.png">
+        </div>
+        休息区
+      </router-link>
     </div>
     <div class="item">
       <div class="item-img">
@@ -33,13 +35,15 @@
   </div>
 </template>
 <script>
-  export default {}
+  export default {
+    name: 'bottom'
+  }
 </script>
 
 <style>
   .bottom{
     display: flex;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
