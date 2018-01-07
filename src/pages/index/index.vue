@@ -53,4 +53,9 @@
 </script>
 
 <style scoped>
+  .index {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
 </style>

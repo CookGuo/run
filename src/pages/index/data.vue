@@ -65,7 +65,7 @@
 
 <style>
   .data{
-    height: 2.8rem;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,7 +74,7 @@
     border-bottom: 1px solid #666;
   }
   .data-info{
-    width: 7.1rem;
+    width: 100%;
     height: 2.6rem;
     background: #e8e7e7;
     border-radius: .1rem;
@@ -97,6 +97,7 @@
    .data-con{
     display: flex;
     text-align: center;
+    justify-content: space-around;
   }
   .con-item{
     display: flex;
