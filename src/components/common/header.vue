@@ -23,7 +23,6 @@
     },
     methods: {
       handleIsShowVideo () {
-        this.flagVideo = false
         return this.flagVideo
       }
     }

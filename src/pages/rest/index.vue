@@ -1,8 +1,8 @@
 <template>
   <div class="index">
-    <rest-header :flagVideo='flagVideo' ref='restheader'></rest-header>
-    <rest-video :videoList="videoList" v-show="IsShowVideo"></rest-video>
-    <rest-recreation :reaVideo="reaVideo" :reaList="reaList" v-show="flagRea"></rest-recreation>
+    <rest-header :flagVideo='flagVideo' ref='IsShow'></rest-header>
+    <rest-video :videoList="videoList" v-show='flagVideo'></rest-video>
+    <rest-recreation :reaVideo="reaVideo" :reaList="reaList" v-show='flagRea'></rest-recreation>
     <recommend :recommends='recommends' v-show='flagCom'></recommend>
     <rest-bottom></rest-bottom>
   </div>
@@ -25,7 +25,7 @@
         recommends: [],
         flagVideo: false,
         flagRea: false,
-        flagCom: false
+        flagCom: true
       }
     },
     components: {
@@ -51,8 +51,9 @@
       handleErrorRest (err) {
         console.log(err)
       },
-      IsShowVideo () {
-        return this.$refs.header.handleIsShowVideo()
+      handle () {
+        this.falg = this.$refs.IsShow
+        return falg
       }
     }
   }
