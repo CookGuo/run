@@ -7,7 +7,7 @@
     <div class="header-nav">
       <div class="nav-item nav-active">推荐</div>
       <div class="nav-item">推荐</div>
-      <div class="nav-item">推荐</div>
+      <div class="nav-item" @click='handleIsShowVideo'>推荐</div>
       <div class="nav-item">推荐</div>
       <div class="nav-item">推荐</div>
     </div>
@@ -17,7 +17,16 @@
 
 <script>
   export default {
-    name: 'Restheader'
+    name: 'Restheader',
+    props: {
+      flagVideo: Boolean
+    },
+    methods: {
+      handleIsShowVideo () {
+        this.flagVideo = false
+        return this.flagVideo
+      }
+    }
   }
 </script>
 

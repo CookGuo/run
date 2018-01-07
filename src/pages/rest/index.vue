@@ -1,31 +1,38 @@
 <template>
   <div class="index">
-    <rest-header></rest-header>
-    <rest-video :videoList="videoList" v-show="false"></rest-video>
-    <rest-recreation :reaVideo="reaVideo" :reaList="reaList"></rest-recreation>
+    <rest-header :flagVideo='flagVideo' ref='restheader'></rest-header>
+    <rest-video :videoList="videoList" v-show="IsShowVideo"></rest-video>
+    <rest-recreation :reaVideo="reaVideo" :reaList="reaList" v-show="flagRea"></rest-recreation>
+    <recommend :recommends='recommends' v-show='flagCom'></recommend>
     <rest-bottom></rest-bottom>
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
   import RestHeader from 'components/common/header.vue'
   import RestBottom from 'components/common/bottom.vue'
   import RestRecreation from './recreation.vue'
   import RestVideo from './video.vue'
-  import axios from 'axios'
+  import Recommend from './recommend.vue'
   export default {
     name: 'rest',
     data () {
       return {
         videoList: [],
         reaVideo: [],
-        reaList: []
+        reaList: [],
+        recommends: [],
+        flagVideo: false,
+        flagRea: false,
+        flagCom: false
       }
     },
     components: {
       RestHeader,
       RestVideo,
       RestRecreation,
+      Recommend,
       RestBottom
     },
     mounted () {
@@ -35,14 +42,17 @@
     },
     methods: {
       handleSuccessRest (res) {
-        console.log(res)
         let ret = (res.data) ? (res = res.data) : res
         ret && (this.videoList = ret.data.video)
         ret && (this.reaVideo = ret.data.reaVideo)
         ret && (this.reaList = ret.data.reaList)
+        ret && (this.recommends = res.data.recommends)
       },
       handleErrorRest (err) {
         console.log(err)
+      },
+      IsShowVideo () {
+        return this.$refs.header.handleIsShowVideo()
       }
     }
   }
