@@ -4,12 +4,12 @@
       <p class="top-con">今日<span class="top-num">5.0</span>公里</p>
       <div class="top-start">开始跑步</div>
     </div>
-    <div class="header-nav">
+    <div class="header-nav" @click='handleIsShowVideo'>
       <div class="nav-item nav-active">推荐</div>
-      <div class="nav-item">推荐</div>
-      <div class="nav-item" @click='handleIsShowVideo'>推荐</div>
-      <div class="nav-item">推荐</div>
-      <div class="nav-item">推荐</div>
+      <div class="nav-item">视频</div>
+      <div class="nav-item">列表</div>
+      <div class="nav-item">新闻</div>
+      <div class="nav-item">娱乐</div>
     </div>
     <input class="header-input" placeholder="请输入搜索内容"></input>
   </div>
@@ -18,12 +18,10 @@
 <script>
   export default {
     name: 'Restheader',
-    props: {
-      flagVideo: Boolean
-    },
     methods: {
-      handleIsShowVideo () {
-        return this.flagVideo
+      handleIsShowVideo (e) {
+        e.target.classList.add("nav-active")
+        this.$emit('changeVideo', e.target.innerHTML)
       }
     }
   }
