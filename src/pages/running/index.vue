@@ -1,15 +1,18 @@
 <template>
   <div class="index">
+    <run-header></run-header>
     <bottom></bottom> 
   </div>
 </template>
 
 <script>
   import Bottom from 'components/common/bottom.vue'
+  import RunHeader from './header.vue'
   export default {
     name: 'running',
     components: {
-      Bottom
+      Bottom,
+      RunHeader
     }
   }
 </script>
