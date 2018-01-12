@@ -1,39 +1,55 @@
 <template>
-  <div class="index-recreation">
-     <div class="content" v-for="item in reaVideo" :key="item.id">
-      <video :src="item.videoUrl" class="video" controls coop :poster="item.imgUrl"></video>
-      <div class="desc">
-        <p>{{item.style}}</p>
-        <p>{{item.author}}</p>
-        <p>评论{{item.comment}}</p>
-        <p>{{item.time}}</p>
-      </div>
-    </div>
-
-
-    <div class="list" v-for="item in reaList" :key="item.id"> 
-      <p class="title">{{item.title}}</p>
-      <div class="img-box">
-        <div class="img-cont" v-for="items in item.imgBox" :key="items.imgUrl">
-          <img :src="items.imgUrl" alt="">
+  <div class="index-recreation" ref="scroller">
+    <div>
+      <div class="content" v-for="item in reaVideo" :key="item.id">
+        <video :src="item.videoUrl" class="video" controls coop :poster="item.imgUrl"></video>
+        <div class="desc">
+          <p>{{item.style}}</p>
+          <p>{{item.author}}</p>
+          <p>评论{{item.comment}}</p>
+          <p>{{item.time}}</p>
         </div>
       </div>
-      <div class="desc">
-        <p>{{item.style}}</p>
-        <p>{{item.author}}</p>
-        <p>评论{{item.comment}}</p>
-        <p>{{item.time}}</p>
+      <div class="list" v-for="item in reaList" :key="item.id"> 
+        <p class="title">{{item.title}}</p>
+        <div class="img-box">
+          <div class="img-cont" v-for="items in item.imgBox" :key="items.imgUrl">
+            <img :src="items.imgUrl" alt="">
+          </div>
+        </div>
+        <div class="desc">
+          <p>{{item.style}}</p>
+          <p>{{item.author}}</p>
+          <p>评论{{item.comment}}</p>
+          <p>{{item.time}}</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import BScroll from 'better-scroll'
   export default {
     name: 'recreation',
     props: {
       reaList: Array,
       reaVideo: Array
+    },
+    watch: {
+      recommends () {
+        this.$reaList(() => {
+          this.scroll.refresh()
+        })
+        this.$reaVideo(() => {
+          this.scroll.refresh()
+        })
+      }
+    },
+    mounted () {
+      this.scroll = new BScroll(this.$refs.scroller, {
+        probeType: 3
+      })
     }
   }
 </script>
@@ -41,7 +57,9 @@
 <style scoped>
   .index-recreation {
     margin: .2rem;
+    flex: 1;
     background: #fff;
+    overflow: hidden;
   }
   .content {
     padding: .2rem .3rem;

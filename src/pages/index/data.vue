@@ -41,6 +41,7 @@
     border-bottom: 1px solid #666;
   }
   .data-info{
+    width: 100%;
     height: 100%;
     background: #e8e7e7;
     border-radius: .1rem;

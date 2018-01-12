@@ -58,12 +58,12 @@
             this.flagRea = false
             this.flagCom = false
             break
-          case '推荐':
+          case '列表':
             this.flagVideo = false
             this.flagRea = true
             this.flagCom = false
             break
-          case '列表':
+          case '推荐':
             this.flagVideo = false
             this.flagRea = false
             this.flagCom = true
@@ -76,8 +76,13 @@
 
 <style scoped>
   .index {
-    width: 100%;
-    height: 100%;
-    background: #3fe9a0;
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background: #eeeeee;
+    display: flex;
+    flex-direction: column;
   }
 </style>

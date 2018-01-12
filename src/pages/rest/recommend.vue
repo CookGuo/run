@@ -1,25 +1,40 @@
 <template>
-  <div class="recommend">
-    <div class="recom-item border-bottom" v-for='item in recommends'>
-      <div class="recom-title">{{item.title}}</div>
-      <div class="recom-img">
-        <img :src="img" class="img-item" v-for='img in item.imgUrl'>
-      </div>
-      <div class="recom-desc">
-        <div class="desc-item reference desc-active">{{item.desc.reference}}</div>
-        <div class="desc-item author">{{item.desc.author}}</div>
-        <div class="desc-item comments">{{item.desc.comments}}</div>
-        <div class="desc-item date">{{item.desc.date}}</div>
+  <div class="recommend" ref='scroller'>
+    <div>
+      <div class="recom-item border-bottom" v-for='item in recommends'>
+        <div class="recom-title">{{item.title}}</div>
+        <div class="recom-img">
+          <img :src="img" class="img-item" v-for='img in item.imgUrl'>
+        </div>
+        <div class="recom-desc">
+          <div class="desc-item reference desc-active">{{item.desc.reference}}</div>
+          <div class="desc-item author">{{item.desc.author}}</div>
+          <div class="desc-item comments">{{item.desc.comments}}</div>
+          <div class="desc-item date">{{item.desc.date}}</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import BScroll from 'better-scroll'
   export default {
     name: 'rest',
     props: {
       recommends: Array
+    },
+    watch: {
+      recommends () {
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
+      }
+    },
+    mounted () {
+      this.scroll = new BScroll(this.$refs.scroller, {
+        probeType: 3
+      })
     }
   }
 </script>
@@ -27,7 +42,9 @@
 <style scoped>
   .recommend{
     padding: .2rem .2rem 0;
-    flex: 1; 
+    flex: 1;
+    background: #fff;
+    overflow: hidden;
   }
   .recom-item{
     width: 100%;

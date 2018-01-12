@@ -1,30 +1,47 @@
 <template>
-  <div class="index-rest">
-    <div class="content" v-for="item in videoList" :key="item.id">
-      <video :src="item.videoUrl" class="video" controls coop :poster="item.imgUrl"></video>
-      <div class="desc">
-        <p>{{item.style}}</p>
-        <p>{{item.author}}</p>
-        <p>评论{{item.comment}}</p>
-        <p>{{item.time}}</p>
+  <div class="index-rest" ref="scroller">
+    <div>
+      <div class="content" v-for="item in videoList" :key="item.id">
+        <video :src="item.videoUrl" class="video" controls coop :poster="item.imgUrl"></video>
+        <div class="desc">
+          <p>{{item.style}}</p>
+          <p>{{item.author}}</p>
+          <p>评论{{item.comment}}</p>
+          <p>{{item.time}}</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import BScroll from 'better-scroll'
   export default {
     name: 'index-video',
     props: {
       videoList: Array
+    },
+    watch: {
+      videoList () {
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
+      }
+    },
+    mounted () {
+      this.scroll = new BScroll(this.$refs.scroller, {
+        probeType: 3
+      })
     }
   }
 </script>
 
 <style scoped>
   .index-rest {
-    margin: .2rem;
+    flex: 1;
     background: #fff;
+    overflow: hidden;
+    margin: .2rem;
   }
   .content {
     padding: .2rem .3rem;
