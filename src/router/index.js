@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Index from '@/pages/index/index'
 import Rest from '@/pages/rest/index'
 import Challenge from '@/pages/challenge/index'
+import Running from '@/pages/running/index'
+import About from '@/pages/about/index'
 
 Vue.use(Router)
 
@@ -22,6 +24,16 @@ export default new Router({
       path: '/challenge',
       name: 'Challenge',
       component: Challenge
+    },
+    {
+      path: '/running',
+      name: 'Running',
+      component: Running
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About
     }
   ]
 })

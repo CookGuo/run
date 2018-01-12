@@ -17,28 +17,38 @@
     <div class="header-input">
       <input class="input" placeholder="请输入搜索内容"></input>
     </div>
-    <div class="header-nav" @click='handleIsShowVideo'>
-      <div class="nav-item" :class="{'nav-active': isActive}">推荐</div>
-      <div class="nav-item">视频</div>
-      <div class="nav-item">列表</div>
-      <div class="nav-item">新闻</div>
-      <div class="nav-item">娱乐</div>
+    <div class="header-nav">
+      <div class="nav-item" v-for="(item, index) in navItem" :class="{'nav-active': item.show}" @click='handleNavClick(index)'>
+        {{item.tab}}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  let navItem = [
+          {'tab': '推荐', 'show': true},
+          {'tab': '视频', 'show': false},
+          {'tab': '社会', 'show': false},
+          {'tab': '养生', 'show': false},
+          {'tab': '娱乐', 'show': false}
+  ]
   export default {
     name: 'Restheader',
-    methods: {
-      handleIsShowVideo (e) {
-        e.target.classList.add("nav-active")
-        this.$emit('changeVideo', e.target.innerHTML)
-      }
-    },
     data () {
       return {
-        isActive: true
+        navItem: navItem
+      }
+    },
+    methods: {
+      handleNavClick (index) {
+        for (var i = 0; i < this.navItem.length; i++) {
+          this.navItem[i].show = false
+          if (i === index) {
+            this.navItem[index].show = true
+          }
+        }
+        this.$emit('change', index)
       }
     }
   }

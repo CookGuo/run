@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <rest-header v-on:changeVideo="handleChangeVideo"></rest-header>
+    <rest-header v-on:change="handleChangeVideo"></rest-header>
     <rest-video :videoList="videoList" v-show='flagVideo'></rest-video>
     <rest-recreation :reaVideo="reaVideo" :reaList="reaList" v-show='flagRea'></rest-recreation>
     <recommend :recommends='recommends' v-show='flagCom'></recommend>
@@ -51,22 +51,22 @@
       handleErrorRest (err) {
         console.log(err)
       },
-      handleChangeVideo (item) {
-        switch (item) {
-          case '视频':
+      handleChangeVideo (index) {
+        switch (index) {
+          case 0:
+            this.flagVideo = false
+            this.flagRea = false
+            this.flagCom = true
+            break
+          case 1:
             this.flagVideo = true
             this.flagRea = false
             this.flagCom = false
             break
-          case '列表':
+          case 2:
             this.flagVideo = false
             this.flagRea = true
             this.flagCom = false
-            break
-          case '推荐':
-            this.flagVideo = false
-            this.flagRea = false
-            this.flagCom = true
             break
         }
       }
