@@ -1,41 +1,41 @@
 <template>
-	<div class="box">
-    <div class="my-circle">
-      <p class="circle-title">
-        <span class="iconfont">&#xe7ed;</span>
-        <span>我的圈子</span>
-      </p>
-      <p class="circle-words">
-        <img class="hotleft" src="../../../static/img/hotbgleft.jpg" alt="">
-        MY CIRCLE
-        <img class="hotright" src="../../../static/img/hotbgright.jpg" alt="">
-      </p>
-      <p class="wind">一阵运动之风吹来了一堆好友动态</p>
-    </div>
-    <div class="container" ref="list">
-      <div class="con">
-        <div class="con-list" v-for="item in circleInfo" :key="item.id">
-          <div class="con-item">
-
-            <div class="circle-top border-bottom">
-              <img class="personal" :src="item.headImg" alt="">
-              <div class="con-desc">
-                <span class="nameID">{{item.name}}</span>
-                <span class="yi">一</span>
-                <span class="describe">{{item.desc}}</span>
-                <p class="circle-run">{{item.sign}}</p>
+	<div class="box" ref="boxlist">
+    <div>
+      <div class="my-circle">
+        <p class="circle-title">
+          <span class="iconfont">&#xe7ed;</span>
+          <span>我的圈子</span>
+        </p>
+        <p class="circle-words">
+          <img class="hotleft" src="../../../static/img/hotbgleft.jpg" alt="">
+          MY CIRCLE
+          <img class="hotright" src="../../../static/img/hotbgright.jpg" alt="">
+        </p>
+        <p class="wind">一阵运动之风吹来了一堆好友动态</p>
+      </div>
+      <div class="container">
+        <div class="con">
+          <div class="con-list" v-for="item in circleInfo" :key="item.id">
+            <div class="con-item">
+              <div class="circle-top border-bottom">
+                <img class="personal" :src="item.headImg" alt="">
+                <div class="con-desc">
+                  <span class="nameID">{{item.name}}</span>
+                  <span class="yi">一</span>
+                  <span class="describe">{{item.desc}}</span>
+                  <p class="circle-run">{{item.sign}}</p>
+                </div>
+                <span class="hot iconfont">&#xe621;</span>
+              </div> 
+              <div class="circle-bottom">
+                <img class="pub" :src="item.conImg" alt="">
+                <p class="pub-con">{{item.content}}</p>
+                <div class="address">
+                   <span class="addr iconfont">&#xe625;</span><span class="adr">{{item.address}}</span>
+                </div>
+                <p class="time">{{item.time}}</p>
+                <div class="detailBtn">详情</div>
               </div>
-              <span class="hot iconfont">&#xe621;</span>
-            </div>
-            
-            <div class="circle-bottom">
-              <img class="pub" :src="item.conImg" alt="">
-              <p class="pub-con">{{item.content}}</p>
-              <div class="address">
-                 <span class="addr iconfont">&#xe625;</span><span class="adr">{{item.address}}</span>
-              </div>
-              <p class="time">{{item.time}}</p>
-              <div class="detailBtn">详情</div>
             </div>
           </div>
         </div>
@@ -45,37 +45,22 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
-import axios from 'axios'
 export default {
   name: 'myzone',
-  data () {
-    return {
-      circleInfo: []
+  props: {
+    circleInfo: Array
+  },
+  watch: {
+    circleInfo () {
+      this.$nextTick(() => {
+        this.scroll.refresh()
+      })
     }
   },
   mounted () {
-    this.scroll = new BScroll(this.$refs.list, {
+    this.scroll = new BScroll(this.$refs.boxlist, {
       probeType: 3
     })
-  },
-  methods: {
-    getDataInfo () {
-      axios.get('api/myzone.json')
-           .then(this.handleGetDataSucc.bind(this))
-           .catch(this.handleGetDataErr.bind(this))
-    },
-    handleGetDataSucc (res) {
-      res && (res = res.data)
-      if (res && res.ret && res.data) {
-        this.circleInfo = res.data.circle
-      }
-    },
-    handleGetDataErr () {
-      console.log('error')
-    }
-  },
-  created () {
-    this.getDataInfo()
   }
 }
 </script>
@@ -83,17 +68,7 @@ export default {
 <style scoped>
   .box{
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    display: none;
-  }
-  .img-con{
     overflow: hidden;
-    height: 0;
-    padding-bottom: 40%;
-  }
-	.logo-img{
-    width: 100%;
   }
   .my-circle{
     width: 7.08rem;

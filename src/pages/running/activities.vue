@@ -35,6 +35,7 @@
             this.list[index].show = true
           }
         }
+        this.$emit('change', index)
       }
     }
   }

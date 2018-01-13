@@ -1,9 +1,9 @@
 <template>
   <div class="index">
     <run-header></run-header>
-    <activity></activity>
-    <hot :hotList='hotList'></hot>
-    <my-zone></my-zone>
+    <activity @change='handleChangeTab'></activity>
+    <my-zone :circleInfo='circleInfo' v-show='flagCir'></my-zone>
+    <hot :hotList='hotList' v-show='flagHot'></hot>
     <bottom></bottom> 
   </div>
 </template>
@@ -19,7 +19,10 @@
     name: 'running',
     data () {
       return {
-        hotList: []
+        hotList: [],
+        circleInfo: [],
+        flagHot: true,
+        flagCir: false
       }
     },
     components: {
@@ -39,10 +42,23 @@
         res = (res.data) ? res.data : null
         if (res && res.data) {
           this.hotList = res.data.hot
+          this.circleInfo = res.data.circle
         }
       },
       handleGetDataErr () {
         console.log('error')
+      },
+      handleChangeTab (index) {
+        switch (index) {
+          case 0 :
+            this.flagHot = true
+            this.flagCir = false
+            break
+          case 1 :
+            this.flagCir = true
+            this.flagHot = false
+            break
+        }
       }
     }
   }
