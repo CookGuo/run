@@ -45,11 +45,8 @@
 
 <style>
   .bottom{
+    z-index: 1;
     display: flex;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
     height: .98rem;
     background: #fff; 
   }
