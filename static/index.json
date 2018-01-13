@@ -18,41 +18,70 @@
 			"imgUrl":"../../../static/img/04.png",
 			"desc":"骑行"
 		}],
-	"movement": [{
-		"id": "01",
-		"num": "1.9",
-		"percentage": "19%",
-		"week": "一"
-		},{
-		"id": "02",
-		"num": "2.1",
-		"percentage": "21%",
-		"week": "二"
-		},{
-		"id": "03",
-		"percentage": "19%",
-		"num": "1.9",
-		"week": "三"
-		},{
-		"id": "04",
-		"num": "2.4",
-		"percentage": "24%",
-		"week": "四"
-		},{
-		"id": "05",
-		"num": "1.9",
-		"percentage": "19%",
-		"week": "五"
-		},{
-		"id": "06",
-		"num": "0",
-		"percentage": "0%",
-		"week": "六"
-		},{
-		"id": "07",
-		"num": "0",
-		"percentage": "0%",
-		"week": "七"
-		}]
+		"movement": [{
+			"id": "01",
+			"num": "1.9",
+			"percentage": "19%",
+			"week": "一"
+			},{
+			"id": "02",
+			"num": "2.1",
+			"percentage": "21%",
+			"week": "二"
+			},{
+			"id": "03",
+			"percentage": "19%",
+			"num": "1.9",
+			"week": "三"
+			},{
+			"id": "04",
+			"num": "2.4",
+			"percentage": "24%",
+			"week": "四"
+			},{
+			"id": "05",
+			"num": "1.9",
+			"percentage": "19%",
+			"week": "五"
+			},{
+			"id": "06",
+			"num": "0",
+			"percentage": "0%",
+			"week": "六"
+			},{
+			"id": "07",
+			"num": "0",
+			"percentage": "0%",
+			"week": "七"
+			}],
+		"species": [{
+			"id": "01",
+			"title": "今日步数",
+			"number": "2175",
+			"isShow": true,
+			"target": "今日目标步数3000",
+			"desc": "燃烧36大卡≈跑步1.4公里"
+			},{
+			"id": "02",
+			"title": "跑步",
+			"isShow": false,
+			"number": "4005",
+			"target": "今日目标步数5000",
+			"desc": "燃烧72大卡≈跑步2.8公里"
+			},{
+			"id": "03",
+			"title": "健身",
+			"isShow": false,
+			"number": "4",
+			"target": "今日目标4组",
+			"desc": "燃烧36大卡≈跑步1.4公里"
+			},{
+			"id": "04",
+			"isShow": false,
+			"title": "骑行",
+			"number": "17km",
+			"target": "今日目标10公里",
+			"desc": "燃烧36大卡≈跑步1.4公里"
+			}]
 	}
 }

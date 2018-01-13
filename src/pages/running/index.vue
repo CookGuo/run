@@ -1,18 +1,46 @@
 <template>
   <div class="index">
     <run-header></run-header>
+    <activity></activity>
+    <hot :hotList='hotList'></hot>
     <bottom></bottom> 
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
   import Bottom from 'components/common/bottom.vue'
   import RunHeader from './header.vue'
+  import Activity from './activities.vue'
+  import Hot from './hot.vue'
   export default {
     name: 'running',
+    data () {
+      return {
+        hotList: []
+      }
+    },
     components: {
       Bottom,
-      RunHeader
+      RunHeader,
+      Activity,
+      Hot
+    },
+    mounted () {
+      axios.get('api/running.json')
+          .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataErr.bind(this))
+    },
+    methods: {
+      handleGetDataSucc (res) {
+        res = (res.data) ? res.data : null
+        if (res && res.data) {
+          this.hotList = res.data.hot
+        }
+      },
+      handleGetDataErr () {
+        console.log('error')
+      }
     }
   }
 </script>
@@ -21,6 +49,9 @@
   .index {
     width: 100%;
     height: 100%;
-    background: #3fe9a0;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #f5f5f5;
   }
 </style>

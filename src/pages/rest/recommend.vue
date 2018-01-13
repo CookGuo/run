@@ -1,7 +1,7 @@
 <template>
   <div class="recommend" ref='scroller'>
     <div>
-      <div class="recom-item border-bottom" v-for='item in recommends'>
+      <div class="recom-item border-bottom" v-for='item in recommends' :key='item.id'>
         <div class="recom-title">{{item.title}}</div>
         <div class="recom-img">
           <img :src="img" class="img-item" v-for='img in item.imgUrl'>

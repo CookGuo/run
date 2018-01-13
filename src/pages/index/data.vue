@@ -1,5 +1,5 @@
 <template>
-  <div class="data">
+  <div class="data border-top">
     <div class="data-info">
       <div class="data-top">
         <div class="data-title">一周运动数据</div>
@@ -30,15 +30,10 @@
   .data{
     flex: 1;
     width: 100%;
-    position: absolute;
-    top: 9.2rem;
-    bottom: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #fff;
-    border-top: 1px solid #666;
-    border-bottom: 1px solid #666;
   }
   .data-info{
     width: 100%;

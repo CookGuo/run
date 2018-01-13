@@ -3,22 +3,23 @@
     <div class="header-top">
       <img src="../../../static/img/music.jpg" class="top-img">
     </div>
+    <div class="hotbg">
+      <img src="../../../static/img/hotbgleft.jpg" class="bg-left">
+      <img src="../../../static/img/hotbgright.jpg" class="bg-right">
+    </div>
     <div class="header-info">
-      <img src="../../../static/img/mycircle.jpg" class="info-img">
-      <!-- <div class="top-info">
-        <h3 class="header-title">
-          <i class="iconfont">&#xe64d;</i>
-          休息乐园
-        </h3>
-        <span class="top-name">MY CIRCLE</span>
-        <p class="top-desc">运动之后享受美妙的惬意时光</p>
-      </div> -->
+      <h3 class="header-title">
+        <i class="iconfont">&#xe7ed;</i>
+        休息乐园
+      </h3>
+      <p class="top-text">MY CIRCLE</p>
+      <p class="top-text">运动之后享受美好惬意的时光</p>
     </div>
     <div class="header-input">
       <input class="input" placeholder="请输入搜索内容"></input>
     </div>
     <div class="header-nav">
-      <div class="nav-item" v-for="(item, index) in navItem" :class="{'nav-active': item.show}" @click='handleNavClick(index)'>
+      <div class="nav-item" v-for="(item, index) in navItem" :class="{'nav-active': item.show}" @click='handleNavClick(index)' :key='item.id'>
         {{item.tab}}
       </div>
     </div>
@@ -89,32 +90,40 @@
     color: #42c69a;
     border-bottom: .02rem solid #42c69a;
   }
+
   .header-info{
-    /*margin: .1rem .2rem;
+    margin: .1rem .2rem 0;
     background: #fff;
+    padding-top: .14rem;
     text-align: center;
-    color: #666666;*/
-    height: 1.14rem;
+    color: #666666;
+    border-radius: .1rem;
+    height: .9rem;
     margin-bottom: .1rem;
-  }
-  .info-img{
-    height: 100%;
-  }
-  /*.top-info{
-    padding: .15rem 0;
-    border-radius: .08rem;
   }
   .header-title{
-    font-size: .22rem;
-    color: #42c69a;
-    padding: 0 0 .08rem;
+    font-size: .24rem;
+    line-height: .24rem;
+    color: #08a36f;
   }
-  .top-desc{
+  .top-text{
     font-size: .18rem;
+    line-height: .16rem;
+    color: #666666;
+    margin-top: .08rem;
   }
-  .top-name{
-    display: block;
-    margin-bottom: .1rem;
-    font-size: .14rem;
-  }*/
+  .hotbg{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 3.2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .bg-left{
+    width: 2.86rem;
+  }
+  .bg-right{
+    width: 2.86rem;
+  }
 </style>
