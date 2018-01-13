@@ -5,6 +5,7 @@ import Rest from '@/pages/rest/index'
 import Challenge from '@/pages/challenge/index'
 import Running from '@/pages/running/index'
 import About from '@/pages/about/index'
+import Login from '@/pages/login/index'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })
