@@ -1,6 +1,5 @@
 <template>
 	<div class="box">
-    <div class="img-con"><img class="logo-img" src="../../../static/img/runlogo.jpg" alt=""></div> 
     <div class="my-circle">
       <p class="circle-title">
         <span class="iconfont">&#xe7ed;</span>
@@ -86,6 +85,7 @@ export default {
     flex: 1;
     display: flex;
     flex-direction: column;
+    display: none;
   }
   .img-con{
     overflow: hidden;

@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <index-header></index-header>
-    <index-step :indexList="indexList"></index-step>
+    <index-step :indexList="indexList" :species='species'></index-step>
     <index-canvas></index-canvas>
   	<install></install>
     <motion-data :movement='movement'></motion-data>
@@ -22,7 +22,8 @@
     data () {
       return {
         indexList: [],
-        movement: []
+        movement: [],
+        species: []
       }
     },
     components: {
@@ -44,6 +45,7 @@
         if (res) {
           this.indexList = res.data.travel
           this.movement = res.data.movement
+          this.species = res.data.species
         }
       },
       handleIndexAjaxErr (err) {
@@ -55,6 +57,8 @@
 
 <style scoped>
   .index {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     height: 100%;
     width: 100%;

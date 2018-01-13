@@ -1,5 +1,5 @@
 <template>
-  <div class="install">
+  <div class="install border-top">
     <div class="install-title">
       今日
       <span class="title-num">2175</span>
@@ -20,7 +20,6 @@
     display: flex;
     height: .58rem;
     background: #fff;
-    border-top: 1px solid #666;
     font-size: .24rem;
     padding: 0 .4rem;
     justify-content: space-between;

@@ -3,14 +3,18 @@
     <div class="bg-img">
       <img src="../../assets/base/img/bg.jpg" alt="">
     </div>
-  	<div class="step-number">
-      <span class="td-number">今日步数</span>
-      <span class="tdy-number">2175</span>
-      <span class="goal-number">今日目标步数3000</span>
-      <span class="goal">燃烧36大卡≈跑步1.4公里</span>
+  	<div class="step-number" 
+        v-for='(specItem, index) in species' 
+        :key='specItem.id'
+        :class="{'isActive': specItem.isShow}" 
+        ref='step'>
+      <span class="td-number">{{specItem.title}}</span>
+      <span class="tdy-number">{{specItem.number}}</span>
+      <span class="goal-number">{{specItem.target}}</span>
+      <span class="goal">{{specItem.desc}}</span>
     </div>
     <div class="sport-list">
-      <div class="sport" v-for="item in indexList">
+      <div class="sport" v-for="(item, index) in indexList" @click='handleTabStep(index)'>
         <div class="img-box" >
           <img :src="item.imgUrl" alt="">
         </div>
@@ -25,10 +29,22 @@
 </template>
 
 <script>
+  // v-show="specItem.id === '01'"
   export default {
     name: 'index-step',
     props: {
-      indexList: Array
+      indexList: Array,
+      species: Array
+    },
+    methods: {
+      handleTabStep (index) {
+        for (var i = 0; i < this.species.length; i++) {
+          this.species[i].isShow = false
+          if (i === index) {
+            this.species[index].isShow = true
+          }
+        }
+      }
     }
   }
 </script>
@@ -60,6 +76,7 @@
     width: 3.6rem;
     top: 1rem;
     left: 50%;
+    display: none;
     margin-left: -1.8rem;
     border-radius: 50%;
     background: rgba(216, 246, 233, .5);
@@ -124,5 +141,8 @@
     color: #fff;
     display: inline-block;
     margin: 0 .2rem;
+  }
+  .isActive{
+    display: flex;
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="bottom">
-    <div class="item" v-for="(item, index) in list" :class="{'item-active': item.show}" @click='handleRouter(index)'>
+  <div class="bottom border-top">
+    <div class="item" v-for="(item, index) in list" :class="{'item-active': item.show}" @click='handleRouter(index)' :key='item.id'>
       <div class="item-img">
         <img class="img" :src="item.img">
       </div>
