@@ -50,17 +50,16 @@ export default {
   props: {
     circleInfo: Array
   },
-  watch: {
-    circleInfo () {
-      this.$nextTick(() => {
-        this.scroll.refresh()
-      })
+  methods: {
+    ref () {
+      if (!this.scroll) {
+        this.scroll = new BScroll(this.$refs.boxlist)
+      } else {
+        this.$nextTick(() => {
+          this.scroll.refresh()
+        })
+      }
     }
-  },
-  mounted () {
-    this.scroll = new BScroll(this.$refs.boxlist, {
-      probeType: 3
-    })
   }
 }
 </script>

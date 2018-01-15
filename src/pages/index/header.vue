@@ -1,20 +1,14 @@
 <template>
   <div class="index-header">
-  	<div class="header-cont">
-  		<div class="img-box">
-  			<img src="../../assets/base/img/yang.png" alt="">
-  		</div>
-  		<div class="weather">
-  			<p class="weather-cont">晴</p>
-  			<p class="wen">
-  				<span class="wen-c">-2°C</span>
-  				<span class="wen-desc">良</span>
-  			</p>
-  		</div>
-	  	<div class="more-cont">
-	  		<span class="more">+</span>
-	  	</div>
-  	</div>
+    <div class="header-cont">
+      <div class="weather">
+        <iframe scrolling="no" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1&site=12" class="iframe">
+        </iframe>
+      </div>
+      <div class="more-cont">
+        <span class="more">+</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,48 +20,47 @@
 
 <style scoped>
   .header-cont {
-  	display: flex;
-  	position: relative;
-  	background: #3cd191;
-  	box-sizing: border-box;
-  	padding: .1rem .3rem;
-  }
-  .header-cont .img-box {
-		height: 0;
-		padding-bottom: .68rem;
-		width: .68rem;
-		margin-right: .1rem;
-  }
-  .header-cont .img-box img {
-  	width: 100%;
+    display: flex;
+    position: relative;
+    background: #3cd191;
+    box-sizing: border-box;
+    height: .88rem;
+    padding: .1rem .3rem;
   }
   .weather-cont {
-  	font-size: .24rem;
-  	color: #fff;
-  	text-align: center;
-  	line-height: .4rem;
+    font-size: .24rem;
+    color: #fff;
+    text-align: center;
+    line-height: .4rem;
+  }
+  .iframe {
+    width: 4rem;
+    height: .88rem;
+    position: absolute;
+    left: -1.5rem;
+    top: -.1rem;
   }
   .wen {
-  	font-size: .24rem;
-  	color: #fff;
-  	text-align: center;
-  	line-height: .4rem;
+    font-size: .24rem;
+    color: #fff;
+    text-align: center;
+    line-height: .4rem;
   }
   .more-cont {
-  	position: absolute;
-  	top: .2rem;
-  	right: .2rem;
+    position: absolute;
+    top: .2rem;
+    right: .2rem;
   }
   .more {
-  	display: block;
-  	border-radius: 50%;
-  	height: .48rem;
-  	width: .48rem;
-  	background: #fff;
-  	color: #3cd191;
-  	text-align: center;
+    display: block;
+    border-radius: 50%;
+    height: .48rem;
+    width: .48rem;
+    background: #fff;
+    color: #3cd191;
+    text-align: center;
     line-height: .48rem;
-  	font-size: .48rem;
-  	font-weight: 600;
+    font-size: .48rem;
+    font-weight: 600;
   }
 </style>

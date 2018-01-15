@@ -9,7 +9,9 @@
         <div class="con-item" v-for='item in movement'>
           <div class="data-num">{{item.num}}K</div>
           <div class="data-process">
-            <div class="data-bar" ref='bar'></div>
+            <transition>
+              <div class="data-bar" ref="bar"></div>
+            </transition> 
           </div>
           {{item.week}}
         </div>
@@ -22,6 +24,47 @@
     name: 'index-data',
     props: {
       movement: Array
+    },
+    data () {
+      return {
+        number: 1,
+        domArr: []
+      }
+    },
+    watch: {
+      movement () {
+        this.$nextTick(() => {
+          this.handleDom()
+        })
+      },
+      domArr () {
+        this.handletTransition()
+      },
+      number () {
+        this.handleClearInterval()
+      }
+    },
+    methods: {
+      handleDom () {
+        this.domArr = this.$refs.bar
+      },
+      handletTransition () {
+        for (let i = 0; i < this.domArr.length; i++) {
+          this.domArr[i].timer = setInterval(() => {
+            this.domArr[i].style.height = ++this.number + 'px'
+          }, 30)
+        }
+      },
+      handleClearInterval () {
+        for (let i = 0; i < this.movement.length; i++) {
+          if (this.number === parseInt(this.movement[i].percentage)) {
+            clearInterval(this.domArr[i].timer)
+          }
+          if (this.movement[i].percentage === '0') {
+            clearInterval(this.domArr[i].timer)
+          }
+        }
+      }
     }
   }
 </script>
@@ -85,7 +128,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60%;
     background: #00aeed;
     border-radius: .1rem;
   }

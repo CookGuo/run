@@ -20,38 +20,38 @@
 		}],
 		"movement": [{
 			"id": "01",
-			"num": "1.9",
-			"percentage": "19%",
+			"num": "6.5",
+			"percentage": "65",
 			"week": "一"
 			},{
 			"id": "02",
-			"num": "2.1",
-			"percentage": "21%",
+			"num": "7.5",
+			"percentage": "75",
 			"week": "二"
 			},{
 			"id": "03",
-			"percentage": "19%",
-			"num": "1.9",
+			"num": "5.2",
+			"percentage": "52",
 			"week": "三"
 			},{
 			"id": "04",
 			"num": "2.4",
-			"percentage": "24%",
+			"percentage": "24",
 			"week": "四"
 			},{
 			"id": "05",
-			"num": "1.9",
-			"percentage": "19%",
+			"num": "7.9",
+			"percentage": "79",
 			"week": "五"
 			},{
 			"id": "06",
 			"num": "0",
-			"percentage": "0%",
+			"percentage": "0",
 			"week": "六"
 			},{
 			"id": "07",
-			"num": "0",
-			"percentage": "0%",
+			"num": "3.8",
+			"percentage": "38",
 			"week": "七"
 			}],
 		"species": [{

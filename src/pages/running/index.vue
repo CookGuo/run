@@ -2,7 +2,7 @@
   <div class="index">
     <run-header></run-header>
     <activity @change='handleChangeTab'></activity>
-    <my-zone :circleInfo='circleInfo' v-show='flagCir'></my-zone>
+    <my-zone :circleInfo='circleInfo' v-show='flagCir' ref="myZone"></my-zone>
     <hot :hotList='hotList' v-show='flagHot'></hot>
     <bottom></bottom> 
   </div>
@@ -59,6 +59,7 @@
             this.flagHot = false
             break
         }
+        this.$refs.myZone.ref()
       }
     }
   }
