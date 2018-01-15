@@ -5,19 +5,36 @@
         <img src="../../../static/img/logo.jpg">
       </div>
       <h3 class="title">注册</h3>
-      <input class="txt" type="text" placeholder="请输入用户名">
-      <input class="txt" type="password" placeholder="请输入密码">
-      <button class="btn">注册</button>
+      <input class="txt" type="text" placeholder="请输入用户名" ref="username">
+      <input class="txt" type="password" placeholder="请输入密码" ref="password">
+      <button class="btn" @click="handleUserRegister">注册</button>
       <span class="log-reg" @click='handleToLogin'>已有账号？马上登录</span>
     </div>
   </transition>
 </template>
 
 <script>
+  import axios from 'axios'
   export default{
     methods: {
       handleToLogin () {
         this.$emit('toLogin')
+      },
+      handleUserRegister () {
+        axios.get('api/registe.json')
+             .then(this.handleUserRegisterSucc.bind(this))
+             .catch(this.handleUserRegisterErr.bind(this))
+      },
+      handleUserRegisterSucc (res) {
+        res = (res.data) ? res.data : null
+        if (res.data.isRegiste) {
+          this.$router.push('/login')
+        } else {
+          alert('用户名已存在')
+        }
+      },
+      handleUserRegisterErr () {
+        alert('用户名已存在')
       }
     }
   }
@@ -67,7 +84,7 @@
   .fade-enter-active, .fade-leave-active {
     transition: opacity 2s;
   }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  .fade-enter, .fade-leave-to {
     opacity: 0;
   }
 </style>

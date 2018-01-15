@@ -14,12 +14,15 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default{
+    data () {
+      return {
+        username: '',
+        password: ''
+      }
+    },
     methods: {
-      props: {
-        username: String,
-        password: String
-      },
       handleToRegister () {
         this.$emit('toRegister')
       },
@@ -27,8 +30,19 @@
         if (this.$refs.loginUser.value === '' || this.$refs.loginPwd.value === '') {
           alert('请输入用户名或密码')
         } else {
-          if (this.$refs.loginUser.value === this.username && this.$refs.loginPwd.value === this.password) {
-            this.$router.push('/')
+          this.username = this.$refs.loginUser.value()
+          this.password = this.$refs.loginPwd.value()
+          axios.get('api/userlogin.json')
+               .then(this.handleUserLoginSucc.bind(this))
+               .catch(this.handleUserLoginErr.bind(this))
+        }
+      },
+      handleUserLoginSucc (res) {
+        if (res) {
+          if (res.data) {
+            if (res.data.isLogin) {
+              this.$router.push('/')
+            }
           }
         }
       }

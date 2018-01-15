@@ -2,9 +2,7 @@
   <div class="index">
     <login-header></login-header>
     <login v-show="showLogin" 
-          @toRegister='handleToRegister' 
-          :username='username' 
-          :password='password'>
+          @toRegister='handleToRegister'>
     </login>
     <register v-show="showRegister" @toLogin='handleToLogin'></register>
   </div>
@@ -18,9 +16,7 @@
     data () {
       return {
         showLogin: true,
-        showRegister: false,
-        username: '',
-        password: ''
+        showRegister: false
       }
     },
     components: {
