@@ -1,16 +1,42 @@
 <template>
   <div class="container border-top">
-    <div class="about">
-    	<div>用户名:<span>XXX</span></div>
-    	<div>账&nbsp;&nbsp;&nbsp;&nbsp;号:<span>101129101</span></div>
-    </div>
     <div class="con-list">
-    	<div class="con-item">我的成就</div>
-    	<div class="con-item">关注</div>
-    	<div class="con-item">通知</div>
-    	<div class="con-item">主页</div>
+    	<div class="con-item">
+        <div class="con-left">
+          <i class="iconfont icon">&#xe64e;</i>
+          <span>运动商城</span>
+        </div>
+        <i class="iconfont con-right">&#xe612;</i>
+      </div>
+      <div class="con-item">
+        <div class="con-left">
+          <i class="iconfont icon">&#xe659;</i>
+          <span>我的跑友</span>
+        </div>
+        <i class="iconfont con-right">&#xe612;</i>
+      </div>
+      <div class="con-item">
+        <div class="con-left">
+            <i class="iconfont icon">&#xe670;</i>
+            <span>运动钱包</span>
+        </div>
+        <i class="iconfont con-right">&#xe612;</i>
+      </div>
+      <div class="con-item">
+        <div class="con-left">
+          <i class="iconfont icon">&#xe673;</i>
+          <span>我的俱乐部</span>
+        </div>
+        <i class="iconfont con-right">&#xe612;</i>
+      </div>
+      <div class="con-item">
+        <div class="con-left">
+          <i class="iconfont icon">&#xe63f;</i>
+          <span>我的收藏</span>
+        </div>
+        <i class="iconfont con-right">&#xe612;</i>
+      </div>
     </div>
-    <div class="cancellation border-topbottom">注销登录</div>
   </div>
 </template>
 
@@ -24,27 +50,33 @@
   .container {
     flex: 1;
     background: #fff;
-  }
-  .about{
-  	height: .8rem;
-  	background: #42c69a;
-  	padding: .4rem;
-  	display: flex;
-  	justify-content: space-between;
-  	flex-direction: column;
-  	font-size: .28rem;
-  	color: #fff;
+    overflow: hidden;
   }
   .con-list{
   	display: flex;
-  	justify-content: space-around;
-  	line-height: 1rem;
+    flex-direction: column;
+    overflow: hidden;
   }
-  .cancellation{
-  	height: .8rem;
-  	color: red;
-  	line-height: .8rem;
-  	text-align: center;
-  	font-size: .36rem;
+  .con-item{
+    font-size: .3rem;
+  	line-height: 1.24rem;
+    color: #333;
+    border-bottom: .02rem solid #bab6b6;
+    padding: 0 .42rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .icon{
+    font-size: .52rem;
+    color: #4cc99f;
+    margin-right: .22rem;
+  }
+  .con-left{
+    display: flex;
+    align-items: center;
+  }
+  .con-right{
+    font-size: .42rem;
   }
 </style>

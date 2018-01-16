@@ -1,10 +1,30 @@
 <template>
   <div class="about-header">
     <div class="header-cont">
-    <iframe class="tianqi" width="200" scrolling="no" height="46" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&bgc=%23&icon=1&num=1&site=12"></iframe>
-  		关于我
-      <div class="login" @click='handleToLogin'>登录</div>
+      <i class="iconfont head-icon">&#xe672;</i>
+      <div class="portrait">
+        <div class="head-center">
+          <img class="por-img" src="../../../static/img/portrait.png">
+        </div>  
+      </div>
+      <i class="iconfont head-icon" @click='handleToLogin'>&#xe618;</i>
   	</div>
+    <h2 class="about-title">新导航人</h2>
+    <h4 class="desc">这个家伙很懒，什么都没有留下</h4>
+    <div class="head-list">
+      <div class="heade-item">
+        <span class="num">2.5w</span>
+        粉丝
+      </div>
+      <div class="heade-item">
+        <span class="num">108</span>
+        关注
+      </div>
+      <div class="heade-item">
+        <span class="num">106</span>
+        消息
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,32 +40,71 @@
 </script>
 
 <style scoped>
-  .chall-header{
-    height: .88rem;
-    position: relative;
-  }
-  .header-cont {
-    line-height: .88rem;
-    text-align: center;
+  .about-header {
+    height: 3.8rem;
+    background: url(../../../static/img/bg.png) no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: #fff;
-    font-size: .34rem;
-    background: #42c69a;
+  }
+  .header-cont{
+    width: 100%;
+    height: 1.74rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .portrait{
+    margin-top: .07rem;
+    width: 1.64rem;
+    height: 1.64rem;
+    border-radius: .82rem;
+    border: .01rem solid #fff;
     position: relative;
   }
-  .login{
-    width: 1.1rem;
-    line-height: .88rem;
+  .head-center{
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: .7rem;
     position: absolute;
+    left: 0;
+    top: 0;
     right: 0;
     bottom: 0;
-    font-size: .30rem;
-    color: #fff;
+    margin: auto;
   }
-  .tianqi{
-    width: 4rem;
-    height: .88rem;
-    position: absolute;
-    left: -1.5rem;
-    top: 0;
+  .por-img{
+    width: 100%;
+    height: 100%;
+  }
+  .head-icon{
+    font-size: .44rem;
+    color: #fff;
+    margin: .2rem .6rem 0;
+  }
+  .about-title{
+    font-size: .32rem;
+    margin: .1rem 0 .2rem;
+  }
+  .desc{
+    font-size: .24rem;
+    margin-bottom: .27rem;
+  }
+  .head-list{
+    width: 100%;
+    display: flex;
+    height: .94rem;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .heade-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: .22rem;
+  }
+  .num{
+    margin-bottom: .1rem;
+    font-size: .2rem;
   }
 </style>
