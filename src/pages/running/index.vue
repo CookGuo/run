@@ -4,6 +4,7 @@
     <activity @change='handleChangeTab'></activity>
     <my-zone :circleInfo='circleInfo' v-show='flagCir' ref="myZone"></my-zone>
     <hot :hotList='hotList' v-show='flagHot'></hot>
+    <topic v-show="flagTopic"></topic>
     <bottom></bottom> 
   </div>
 </template>
@@ -15,6 +16,7 @@
   import MyZone from './myzone.vue'
   import Activity from './activities.vue'
   import Hot from './hot.vue'
+  import Topic from './topic.vue'
   export default {
     name: 'running',
     data () {
@@ -22,7 +24,8 @@
         hotList: [],
         circleInfo: [],
         flagHot: true,
-        flagCir: false
+        flagCir: false,
+        flagTopic: false
       }
     },
     components: {
@@ -30,7 +33,8 @@
       RunHeader,
       MyZone,
       Activity,
-      Hot
+      Hot,
+      Topic
     },
     mounted () {
       axios.get('api/running.json')
@@ -53,10 +57,17 @@
           case 0 :
             this.flagHot = true
             this.flagCir = false
+            this.flagTopic = false
             break
           case 1 :
             this.flagCir = true
             this.flagHot = false
+            this.flagTopic = false
+            break
+          case 2 :
+            this.flagTopic = true
+            this.flagHot = false
+            this.flagCir = false
             break
         }
         this.$refs.myZone.ref()
