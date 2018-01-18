@@ -65,6 +65,7 @@
   }
   .top-img{
     width: 100%;
+    height: 100%;
   }
   .header-input{
     padding: 0 0.2rem;

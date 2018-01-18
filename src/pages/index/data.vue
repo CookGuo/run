@@ -113,7 +113,7 @@
   }
   .data-process{
     width: .2rem;
-    height: 96%;
+    height: 2rem;
     border: 1px solid #666666;
     border-radius: .1rem;
     position: relative;

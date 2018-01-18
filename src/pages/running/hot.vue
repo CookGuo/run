@@ -79,11 +79,12 @@
   }
   .info-item{
     margin-top: .38rem;
-    width: 710px;
+    width: 100%;
     height: 2.9rem;
     display: flex;
   }
   .info-bg{
     height: 100%;
+    width: 100%;
   }
 </style>

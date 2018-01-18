@@ -68,12 +68,13 @@ export default {
   .box{
     flex: 1;
     overflow: hidden;
+    padding: 0 .4rem;
   }
   .my-circle{
-    width: 7.08rem;
+    /*width: 7.08rem;*/
     height: 1.11rem;
     border: .03rem solid #e3483a;
-    margin: .25rem 0 0 .19rem;
+    margin-top: .25rem;
     border-radius: .1rem;
   }
   .circle-title{
@@ -117,15 +118,15 @@ export default {
     padding-bottom: .1rem;
   }
   .con-list{
-    width: 6.92rem;
     height: 3.29rem;
     border-radius: .1rem;
-    margin: .22rem 0 0 .21rem;
     background: #fff;
-    padding: .18rem 0 0 .2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .2rem .1rem 0;
   }
   .con-item{
-    width: 6.72rem;
     height: 3.09rem;
     border: .03rem solid #e3483a;
     border-radius: .1rem;

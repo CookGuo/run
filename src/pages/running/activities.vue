@@ -50,6 +50,7 @@
   }
   .act-bg{
     width: 100%;
+    height: 3rem;
   }
   .act-list{
     position: absolute;
@@ -63,7 +64,7 @@
   }
   .act-item{
     width: 1.4rem;
-    height: 2.96rem;
+    height: 100%;
   }
   .act-active{
     border-bottom: .04rem solid #42c69a;

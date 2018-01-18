@@ -59,6 +59,7 @@
   }
   .recom-img{
     display: flex;
+    overflow: hidden;
     justify-content: space-between;
     height: 1.64rem;
   }
