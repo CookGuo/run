@@ -36,7 +36,7 @@
       RestBottom
     },
     mounted () {
-      axios.get('/api/rest.json')
+      axios.get('/static/rest.json')
            .then(this.handleSuccessRest.bind(this))
            .catch(this.handleErrorRest.bind(this))
     },

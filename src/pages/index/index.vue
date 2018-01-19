@@ -35,7 +35,7 @@
       MotionData
     },
     mounted () {
-      axios.get('api/index.json')
+      axios.get('/static/index.json')
            .then(this.handleIndexAjaxSucc.bind(this))
            .catch(this.handleIndexAjaxErr.bind(this))
     },

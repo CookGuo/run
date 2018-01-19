@@ -37,7 +37,7 @@
       Topic
     },
     mounted () {
-      axios.get('api/running.json')
+      axios.get('/static/running.json')
           .then(this.handleGetDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
     },

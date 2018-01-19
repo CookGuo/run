@@ -21,7 +21,7 @@
         this.$emit('toLogin')
       },
       handleUserRegister () {
-        axios.get('api/registe.json')
+        axios.get('/static/registe.json')
              .then(this.handleUserRegisterSucc.bind(this))
              .catch(this.handleUserRegisterErr.bind(this))
       },

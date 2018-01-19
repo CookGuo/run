@@ -90,7 +90,7 @@
       }
     },
     created () {
-      axios.get('/api/label.json')
+      axios.get('/static/label.json')
            .then(this.handleLabelSucc.bind(this))
            .catch(this.handleLabelErr.bind(this))
     },
