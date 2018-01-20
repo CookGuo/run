@@ -2,9 +2,15 @@
   <div class="index">
     <login-header></login-header>
     <login v-show="showLogin" 
-          @toRegister='handleToRegister'>
+          @toRegister='handleToRegister'
+          :showRegister='showRegister'
+          :showLogin='showLogin'>
     </login>
-    <register v-show="showRegister" @toLogin='handleToLogin'></register>
+    <register v-show="showRegister" 
+              @toLogin='handleToLogin'
+              :showRegister='showRegister'
+              :showLogin='showLogin'>
+    </register>
   </div>
 </template>
 

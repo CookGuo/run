@@ -46,6 +46,7 @@
     height: 2.07rem;
   }
   .item-img{
+    width: 100%;
     height: 100%;
   }
 </style>

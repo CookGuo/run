@@ -4,11 +4,11 @@
     	<div class="logo">
     		<img src="../../../static/img/logo.jpg">
     	</div>
-      <h3 class="title">登录</h3>
-      <input class="txt" type="text" placeholder="请输入用户名" ref='loginUser'>
+      <h3 class="title">账号登录</h3>
+      <input class="txt" type="text" placeholder="请输入手机号" ref='loginUser'>
       <input class="txt" type="password" placeholder="请输入密码" ref='loginPwd'>
       <button class="btn" @click='login'>登录</button>
-      <span class="log-reg" @click='handleToRegister'>没有账号？马上注册</span>
+      <span class="log-reg" @click='handleToRegister'>没有账号？马上<a class="a-reg">注册</a></span>
     </div>
   </transition>
 </template>
@@ -27,24 +27,31 @@
         this.$emit('toRegister')
       },
       login () {
-        if (this.$refs.loginUser.value === '' || this.$refs.loginPwd.value === '') {
-          alert('请输入用户名或密码')
-        } else {
-          this.username = this.$refs.loginUser.value()
-          this.password = this.$refs.loginPwd.value()
-          axios.get('api/userlogin.json')
+        axios.get('/static/userlogin.json')
                .then(this.handleUserLoginSucc.bind(this))
                .catch(this.handleUserLoginErr.bind(this))
-        }
+        // if (this.$refs.loginUser.value === '' || this.$refs.loginPwd.value === '') {
+        //   alert('请输入用户名或密码')
+        // } else {
+        //   this.username = this.$refs.loginUser.value
+        //   this.password = this.$refs.loginPwd.value
+        //   axios.get('http://10.9.168.12/user/login_user')
+        //        .then(this.handleUserLoginSucc.bind(this))
+        //        .catch(this.handleUserLoginErr.bind(this))
+        // }
       },
       handleUserLoginSucc (res) {
-        if (res) {
-          if (res.data) {
-            if (res.data.isLogin) {
-              this.$router.push('/')
-            }
-          }
-        }
+        console.log(res)
+        // if (res) {
+        //   if (res.data) {
+        //     if (res.data.isLogin) {
+        //       this.$router.push('/')
+        //     }
+        //   }
+        // }
+      },
+      handleUserLoginErr () {
+        console.log('error')
       }
     }
   }
@@ -77,6 +84,7 @@
     outline:none;
     padding: .2rem;
     border:1px solid #888;
+    border-radius: .4rem;
   }
   .btn{
     display: block;
@@ -88,13 +96,17 @@
     color:#fff; 
     font-size: .32rem; 
     margin:0 auto .1rem;
+    border-radius: .4rem;
   }
   .log-reg{cursor:pointer;}
   .log-reg:hover{color:#41b883;}
   .fade-enter-active, .fade-leave-active {
     transition: opacity 2s;
   }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  .fade-enter, .fade-leave-to{
     opacity: 0;
+  }
+  .a-reg{
+    text-decoration: underline;
   }
 </style>
