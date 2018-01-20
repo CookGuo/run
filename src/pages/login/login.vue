@@ -27,28 +27,28 @@
         this.$emit('toRegister')
       },
       login () {
-        axios.get('/static/userlogin.json')
+        if (this.$refs.loginUser.value === '' || this.$refs.loginPwd.value === '') {
+          alert('请输入用户名或密码')
+        } else {
+          this.username = this.$refs.loginUser.value
+          this.password = this.$refs.loginPwd.value
+          axios.post('/static/login_user', {
+            username: this.username,
+            password: this.password
+          })
                .then(this.handleUserLoginSucc.bind(this))
                .catch(this.handleUserLoginErr.bind(this))
-        // if (this.$refs.loginUser.value === '' || this.$refs.loginPwd.value === '') {
-        //   alert('请输入用户名或密码')
-        // } else {
-        //   this.username = this.$refs.loginUser.value
-        //   this.password = this.$refs.loginPwd.value
-        //   axios.get('http://10.9.168.12/user/login_user')
-        //        .then(this.handleUserLoginSucc.bind(this))
-        //        .catch(this.handleUserLoginErr.bind(this))
-        // }
+        }
       },
       handleUserLoginSucc (res) {
         console.log(res)
-        // if (res) {
-        //   if (res.data) {
-        //     if (res.data.isLogin) {
-        //       this.$router.push('/')
-        //     }
-        //   }
-        // }
+        if (res) {
+          if (res.data) {
+            if (res.data.isLogin) {
+              this.$router.push('/')
+            }
+          }
+        }
       },
       handleUserLoginErr () {
         console.log('error')

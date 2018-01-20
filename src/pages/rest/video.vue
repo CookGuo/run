@@ -2,7 +2,7 @@
   <div class="index-rest" ref="scroller">
     <div>
       <div class="content" v-for="item in videoList" :key="item.id">
-        <video :src="item.videoUrl" class="video" controls coop :poster="item.imgUrl"></video>
+        <video :src="item.videoUrl" class="video" controls :poster="item.imgUrl"></video>
         <div class="desc">
           <p>{{item.style}}</p>
           <p>{{item.author}}</p>
