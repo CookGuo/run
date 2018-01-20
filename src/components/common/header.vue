@@ -1,7 +1,8 @@
 <template>
   <div class="header">
     <div class="header-top">
-      <img src="../../../static/img/music.jpg" class="top-img">
+      <img src="../../../static/img/music.jpg" class="top-img" @click="handleAudioPlay">
+      <audio src="http://res.zhangu365.com/syspic/mp3/47f53deb42ddef8c2d52349e07abb71a.mp3" controls class="audio" ref="audio"></audio>
     </div>
     <div class="hotbg">
       <img src="../../../static/img/hotbgleft.jpg" class="bg-left">
@@ -38,7 +39,8 @@
     name: 'Restheader',
     data () {
       return {
-        navItem: navItem
+        navItem: navItem,
+        isAudio: true
       }
     },
     methods: {
@@ -50,6 +52,15 @@
           }
         }
         this.$emit('change', index)
+      },
+      handleAudioPlay () {
+        if (this.isAudio) {
+          this.$refs.audio.play()
+          this.isAudio = false
+        } else {
+          this.$refs.audio.pause()
+          this.isAudio = true
+        }
       }
     }
   }
@@ -126,5 +137,8 @@
   }
   .bg-right{
     width: 2.86rem;
+  }
+  .audio {
+    display: none;
   }
 </style>

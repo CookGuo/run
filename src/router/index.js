@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/pages/index/index'
 import Rest from '@/pages/rest/index'
-import Challenge from '@/pages/challenge/index'
 import Running from '@/pages/running/index'
 import About from '@/pages/about/index'
 import Login from '@/pages/login/index'
@@ -20,11 +19,6 @@ export default new Router({
       path: '/rest',
       name: 'Rest',
       component: Rest
-    },
-    {
-      path: '/challenge',
-      name: 'Challenge',
-      component: Challenge
     },
     {
       path: '/running',
