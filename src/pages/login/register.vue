@@ -42,8 +42,9 @@
         .catch(this.handleUserRegisterErr.bind(this))
       },
       handleUserRegisterSucc (res) {
-        res = (res.data) ? res.data : null
-        this.handleDataCorrect()
+        console.log(res)
+        // res = (res.data) ? res.data : null
+        // this.handleDataCorrect()
       },
       handleUserRegisterErr () {
         alert('用户名已存在')
