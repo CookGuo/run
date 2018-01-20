@@ -32,26 +32,35 @@
         } else {
           this.username = this.$refs.loginUser.value
           this.password = this.$refs.loginPwd.value
-          axios.post('/static/login_user', {
-            username: this.username,
-            password: this.password
-          })
-               .then(this.handleUserLoginSucc.bind(this))
-               .catch(this.handleUserLoginErr.bind(this))
+          // axios.post('/api/userlogin.json', {
+          //   username: this.username,
+          //   password: this.password
+          // })
+          // .then(this.handleUserLoginSucc.bind(this))
+          // .catch(this.handleUserLoginErr.bind(this))
+          axios.get('/api/userlogin.json')
+              .then(this.handleUserLoginSucc.bind(this))
+              .catch(this.handleUserLoginErr.bind(this))
         }
       },
       handleUserLoginSucc (res) {
-        console.log(res)
-        if (res) {
-          if (res.data) {
-            if (res.data.isLogin) {
-              this.$router.push('/')
-            }
-          }
+        res = (res.data) ? res.data : null
+        if (res.data.userId && this.handleValidate(this.$refs.loginUser.value)) {
+          this.$router.push('/')
         }
       },
       handleUserLoginErr () {
         console.log('error')
+      },
+      handleValidate (phone) {
+        let mobileReg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
+        if (phone === '') {
+          alert('请输入手机号')
+        } else if (!mobileReg.test(phone)) {
+          alert('请输入正确的手机号')
+        } else {
+          return true
+        }
       }
     }
   }

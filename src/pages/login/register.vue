@@ -5,7 +5,7 @@
         <img src="../../../static/img/logo.jpg">
       </div>
       <h3 class="title">用户注册</h3>
-      <input class="txt" type="text" placeholder="请输入手机号" ref="username">
+      <input class="txt" type="text" placeholder="请输入手机号" ref="username" @blur='handleBlur'>
       <input class="txt" type="password" placeholder="请输入密码" ref="password">
       <div class="code">
         <input class="code-txt" type="text" placeholder="请输入验证码" ref="codenum">
@@ -23,10 +23,11 @@
     data () {
       return {
         code: '',
-        username:'',
-        password:'',
-        "time":2,
-        "isCodeNum":true
+        username: '',
+        password: '',
+        time: 59,
+        isCodeNum: true,
+        inputCode: ''
       }
     },
     methods: {
@@ -36,61 +37,76 @@
       handleUserRegister () {
         this.username = this.$refs.username.value
         this.password = this.$refs.password.value
-        this.code = this.$refs.codenum.value
-        axios({  
-          method:'post',
-          url:'/static/reg',
-          data: {
-            username: this.username,
-            password: this.password,
-            code: this.code
-          }
-        })
-        .then(this.handleUserRegisterSucc.bind(this))
-        .catch(this.handleUserRegisterErr.bind(this))
+        axios.get('/api/registe.json')
+            .then(this.handleUserRegisterSucc.bind(this))
+            .catch(this.handleUserRegisterErr.bind(this))
+        // axios({
+        //   method: 'post',
+        //   url: '/api/reg',
+        //   data: {
+        //     username: this.username,
+        //     password: this.password,
+        //     code: this.code
+        //   }
+        // }).then(this.handleUserRegisterSucc.bind(this))
+        // .catch(this.handleUserRegisterErr.bind(this))
       },
       handleUserRegisterSucc (res) {
-        console.log(res)
-        // res = (res.data) ? res.data : null
-        // this.handleDataCorrect()
+        res = (res.data) ? res.data : null
+        this.handleDataCorrect()
       },
       handleUserRegisterErr () {
-        alert('用户名已存在')
+        console.log('服务器连接失败')
       },
       handleGetPhoneCode () {
         if (this.isCodeNum) {
           this.isCodeNum = false
           if (this.$refs.username.value) {
             this.username = this.$refs.username.value
-            this.$refs.codeBtn.innerHTML = "60s"
+            this.$refs.codeBtn.innerHTML = '60s'
             this.$refs.codeBtn.style.backgroundColor = '#ccc'
             var timer = setInterval(() => {
-              this.$refs.codeBtn.innerHTML = this.time-- + "s"
+              this.$refs.codeBtn.innerHTML = this.time-- + 's'
               if (this.time <= 0) {
                 clearInterval(timer)
                 this.isCodeNum = true
                 this.$refs.codeBtn.style.backgroundColor = '#41b883'
-                this.$refs.codeBtn.innerHTML = "获取验证码"
+                this.$refs.codeBtn.innerHTML = '获取验证码'
               }
             }, 1000)
-            axios.get('/static/code?username=' + this.username)
+            // axios.get('/api/code?username=' + this.username)
+            // .then(this.handlePhoneCodeSucc.bind(this))
+            axios.get('/api/code.json')
             .then(this.handlePhoneCodeSucc.bind(this))
           }
-          }
+        }
       },
       handlePhoneCodeSucc (res) {
         res = (res.data) ? res.data : null
-        this.code = res.data.isCode
+        this.code = res.code
       },
       handleDataCorrect () {
-        const inputCode = this.$refs.codenum.value
-        // if (inputCode !== this.code) {
-        //   alert('验证码输入错误')
-        // } else if (inputCode === '') {
-        //   alert('请输入验证码')
-        // } else if (inputCode === this.code) {
-        //   this.$emit('toLogin')
-        // }
+        this.inputCode = this.$refs.codenum.value
+        if (this.inputCode !== this.code) {
+          alert('验证码输入错误')
+        } else if (this.inputCode === '') {
+          alert('请输入验证码')
+        } else if (this.inputCode === this.code && this.handleValidate(this.$refs.username.value)) {
+          this.$emit('toLogin')
+        }
+      },
+      handleBlur () {
+        this.handleValidate(this.$refs.username.value)
+      },
+      handleValidate (phone) {
+        let mobileReg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
+        if (phone === '') {
+          alert('请输入手机号')
+        } else if (!mobileReg.test(phone)) {
+          alert('请输入正确的手机号')
+        } else {
+          return true
+        }
       }
     }
   }
