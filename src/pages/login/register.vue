@@ -22,7 +22,11 @@
   export default{
     data () {
       return {
-        code: ''
+        code: '',
+        username:'',
+        password:'',
+        "time":2,
+        "isCodeNum":true
       }
     },
     methods: {
@@ -30,12 +34,16 @@
         this.$emit('toLogin')
       },
       handleUserRegister () {
+        this.username = this.$refs.username.value
+        this.password = this.$refs.password.value
+        this.code = this.$refs.codenum.value
         axios({  
           method:'post',
-          url:'/static/registe.json',
+          url:'/static/reg',
           data: {
-            username: this.$refs.username.value,
-            password: this.$refs.password.value
+            username: this.username,
+            password: this.password,
+            code: this.code
           }
         })
         .then(this.handleUserRegisterSucc.bind(this))
@@ -50,10 +58,25 @@
         alert('用户名已存在')
       },
       handleGetPhoneCode () {
-        this.$refs.codeBtn.innerHTML = '正在发送...'
-        this.$refs.codeBtn.style.backgroundColor = '#ccc'
-        axios.get('/static/reg.json')
-        .then(this.handlePhoneCodeSucc.bind(this))
+        if (this.isCodeNum) {
+          this.isCodeNum = false
+          if (this.$refs.username.value) {
+            this.username = this.$refs.username.value
+            this.$refs.codeBtn.innerHTML = "60s"
+            this.$refs.codeBtn.style.backgroundColor = '#ccc'
+            var timer = setInterval(() => {
+              this.$refs.codeBtn.innerHTML = this.time-- + "s"
+              if (this.time <= 0) {
+                clearInterval(timer)
+                this.isCodeNum = true
+                this.$refs.codeBtn.style.backgroundColor = '#41b883'
+                this.$refs.codeBtn.innerHTML = "获取验证码"
+              }
+            }, 1000)
+            axios.get('/static/code?username=' + this.username)
+            .then(this.handlePhoneCodeSucc.bind(this))
+          }
+          }
       },
       handlePhoneCodeSucc (res) {
         res = (res.data) ? res.data : null
@@ -61,13 +84,13 @@
       },
       handleDataCorrect () {
         const inputCode = this.$refs.codenum.value
-        if (inputCode !== this.code) {
-          alert('验证码输入错误')
-        } else if (inputCode === '') {
-          alert('请输入验证码')
-        } else if (inputCode === this.code) {
-          this.$emit('toLogin')
-        }
+        // if (inputCode !== this.code) {
+        //   alert('验证码输入错误')
+        // } else if (inputCode === '') {
+        //   alert('请输入验证码')
+        // } else if (inputCode === this.code) {
+        //   this.$emit('toLogin')
+        // }
       }
     }
   }
