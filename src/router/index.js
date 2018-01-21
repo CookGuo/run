@@ -5,6 +5,7 @@ import Rest from '@/pages/rest/index'
 import Running from '@/pages/running/index'
 import About from '@/pages/about/index'
 import Login from '@/pages/login/index'
+import Issue from '@/pages/issue/index'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/issue',
+      name: 'Issue',
+      component: Issue
     }
   ]
 })
