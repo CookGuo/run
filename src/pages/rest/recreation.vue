@@ -1,13 +1,13 @@
 <template>
   <div class="index-recreation" ref="scroller">
     <div>
-      <div class="content" v-for="item in reaVideo" :key="item.id">
-        <video :src="item.videoUrl" class="video" controls coop :poster="item.imgUrl"></video>
+      <div class="content">
+        <video :src="reaVideo.videoUrl" class="video" controls :poster="reaVideo.imgUrl"></video>
         <div class="desc">
-          <p>{{item.style}}</p>
-          <p>{{item.author}}</p>
-          <p>评论{{item.comment}}</p>
-          <p>{{item.time}}</p>
+          <p>{{reaVideo.style}}</p>
+          <p>{{reaVideo.author}}</p>
+          <p>评论{{reaVideo.comment}}</p>
+          <p>{{reaVideo.time}}</p>
         </div>
       </div>
       <div class="list" v-for="item in reaList" :key="item.id"> 
@@ -34,14 +34,12 @@
     name: 'recreation',
     props: {
       reaList: Array,
-      reaVideo: Array
+      reaVideo: Object
     },
     watch: {
-      recommends () {
-        this.$reaList(() => {
-          this.scroll.refresh()
-        })
-        this.$reaVideo(() => {
+      reaVideo () {
+        this.$nextTick(() => {
+          console.log(this.reaVideo)
           this.scroll.refresh()
         })
       }
@@ -81,7 +79,7 @@
     border-bottom: 1px solid #000;
   }
   .title {
-    line-height: .7rem;
+    line-height: .4rem;
     font-size: .3rem;
     color: #000;
     padding: 0 .2rem;

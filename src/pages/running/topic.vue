@@ -15,8 +15,7 @@
         <div class="label">
           <div v-for="item in labelInfo" :key="item.id" class="label-cont">{{item.title}}</div>
         </div>
-      </div>
-      
+      </div>  
       <div class="scroll-right">
         <div class="img-cont">
           <div class="img-box" v-for="items in scrollRightInfo" :key="items.id">
@@ -56,6 +55,11 @@
                 </div>
               </div>
               <footer>
+                <div class="user-box">
+                  <i class="iconfont give-like" ref='like' 
+                  :class='{"color-active":isColor}' 
+                  @click='handleGiveLike'>&#xe604;</i>
+                </div>
                 <div class="user-box"  v-for="itemimg in item.userimgbox">
                   <img :src="itemimg.img" alt="">
                 </div>
@@ -78,7 +82,8 @@
       return {
         labelInfo: [],
         scrollRightInfo: [],
-        userInfo: []
+        userInfo: [],
+        isColor: false
       }
     },
     watch: {
@@ -90,11 +95,14 @@
       }
     },
     created () {
-      axios.get('/static/label.json')
-           .then(this.handleLabelSucc.bind(this))
-           .catch(this.handleLabelErr.bind(this))
+      this.getTopic()
     },
     methods: {
+      getTopic () {
+        axios.get('/static/label.json')
+             .then(this.handleLabelSucc.bind(this))
+             .catch(this.handleLabelErr.bind(this))
+      },
       handleLabelSucc (res) {
         res = (res.data) ? res.data : null
         if (res.data) {
@@ -105,6 +113,9 @@
       },
       handleLabelErr (err) {
         console.loe(err)
+      },
+      handleGiveLike () {
+        this.isColor = !this.isColor
       }
     },
     mounted () {
@@ -341,5 +352,14 @@
     height: .4rem;
     width: .4rem;
     right: 0;
+  }
+  .give-like{
+    font-size: .48rem;
+    display: block;
+    line-height: .4rem;
+    color: #ccc;
+  }
+  .color-active{
+    color:#ff0000;
   }
 </style>

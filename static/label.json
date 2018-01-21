@@ -79,9 +79,6 @@
         ],
         "userimgbox":[
           {
-            "img":"../../../static/img/xing.png"
-          },
-          {
             "img":"../../../static/img/tou2.jpg"
           },
           {
@@ -113,9 +110,6 @@
         ],
         "userimgbox":[
           {
-            "img":"../../../static/img/xing.png"
-          },
-          {
             "img":"../../../static/img/tou1.jpg"
           },
           {
@@ -146,9 +140,6 @@
           }
         ],
         "userimgbox":[
-          {
-            "img":"../../../static/img/xing.png"
-          },
           {
             "img":"../../../static/img/tou3.jpg"
           },

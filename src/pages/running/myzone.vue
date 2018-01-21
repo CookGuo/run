@@ -71,7 +71,6 @@ export default {
     padding: 0 .4rem;
   }
   .my-circle{
-    /*width: 7.08rem;*/
     height: 1.11rem;
     border: .03rem solid #e3483a;
     margin-top: .25rem;

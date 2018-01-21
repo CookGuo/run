@@ -3,7 +3,7 @@
     <rest-header v-on:change="handleChangeVideo"></rest-header>
     <rest-video :videoList="videoList" v-show='flagVideo'></rest-video>
     <rest-recreation :reaVideo="reaVideo" :reaList="reaList" v-show='flagRea'></rest-recreation>
-    <recommend :recommends='recommends' v-show='flagCom'></recommend>
+    <recommend :reaList='reaList' v-show='flagCom'></recommend>
     <rest-bottom></rest-bottom>
   </div>
 </template>
@@ -20,9 +20,8 @@
     data () {
       return {
         videoList: [],
-        reaVideo: [],
+        reaVideo: {},
         reaList: [],
-        recommends: [],
         flagVideo: false,
         flagRea: false,
         flagCom: true
@@ -36,7 +35,7 @@
       RestBottom
     },
     mounted () {
-      axios.get('/static/rest.json')
+      axios.get('/api/rest/list')
            .then(this.handleSuccessRest.bind(this))
            .catch(this.handleErrorRest.bind(this))
     },
@@ -46,7 +45,6 @@
         ret && (this.videoList = ret.data.video)
         ret && (this.reaVideo = ret.data.reaVideo)
         ret && (this.reaList = ret.data.reaList)
-        ret && (this.recommends = res.data.recommends)
       },
       handleErrorRest (err) {
         console.log(err)

@@ -1,16 +1,18 @@
 <template>
   <div class="recommend" ref='scroller'>
     <div>
-      <div class="recom-item border-bottom" v-for='item in recommends' :key='item.id'>
-        <div class="recom-title">{{item.title}}</div>
-        <div class="recom-img">
-          <img :src="img" class="img-item" v-for='img in item.imgUrl'>
+      <div class="list" v-for="item in reaList" :key="item.id"> 
+        <p class="title">{{item.title}}</p>
+        <div class="img-box">
+          <div class="img-cont" v-for="items in item.imgBox" :key="items.imgUrl">
+            <img :src="items.imgUrl" alt="">
+          </div>
         </div>
-        <div class="recom-desc">
-          <div class="desc-item reference desc-active">{{item.desc.reference}}</div>
-          <div class="desc-item author">{{item.desc.author}}</div>
-          <div class="desc-item comments">{{item.desc.comments}}</div>
-          <div class="desc-item date">{{item.desc.date}}</div>
+        <div class="desc">
+          <p>{{item.style}}</p>
+          <p>{{item.author}}</p>
+          <p>评论{{item.comment}}</p>
+          <p>{{item.time}}</p>
         </div>
       </div>
     </div>
@@ -22,10 +24,10 @@
   export default {
     name: 'rest',
     props: {
-      recommends: Array
+      reaList: Array
     },
     watch: {
-      recommends () {
+      reaList () {
         this.$nextTick(() => {
           this.scroll.refresh()
         })
@@ -46,36 +48,33 @@
     background: #fff;
     overflow: hidden;
   }
-  .recom-item{
-    width: 100%;
-    /*height: 2.76rem;*/
-    background: #fff;
+  .desc {
+    display: flex;
+    font-size: .12rem;
+    color: #000;
   }
-  .recom-title{
+  .desc p {
+    line-height: .5rem;
+    margin-left: .3rem;
+  }
+  .list {
+    border-bottom: 1px solid #000;
+  }
+  .title {
+    line-height: .4rem;
+    font-size: .3rem;
+    color: #000;
     padding: 0 .2rem;
-    line-height: .64rem;
-    font-size: .28rem;
-    color: #272727;
   }
-  .recom-img{
+  .img-box {
     display: flex;
-    overflow: hidden;
-    justify-content: space-between;
-    height: 1.64rem;
+    margin-bottom: .1rem;
   }
-  .img-item{
-    height: 100%;
+  .img-cont {
+    width: 33.33%;
+    padding: 0 0.1rem;
   }
-  .recom-desc{
-    display: flex;
-    padding: .2rem .2rem .1rem;
-  }
-  .desc-item{
-    margin-right: .3rem;
-    color: #333333;
-    font-size: .18rem;
-  }
-  .desc-active{
-    color: #3fe9a0;
+  .img-cont img {
+    width: 100%;
   }
 </style>

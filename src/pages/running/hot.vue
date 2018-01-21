@@ -13,7 +13,7 @@
         <p class="hot-text">HOT ACTIVITY</p>
         <p class="hot-text">哎呀，天上掉下一个活动来砸中了您！</p>
         <div class="hot-info">
-          <div class="info-item" v-for='item in hotList' :key='item.id'>
+          <div class="info-item" v-for='item in hotList' :key='item.id' @click='handleToDetails(item.id)'>
             <img :src="item.imgUrl" class="info-bg">
           </div>
         </div>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import BScroll from 'better-scroll'
   export default {
     name: 'run-hot',
@@ -31,8 +32,29 @@
         probeType: 3
       })
     },
-    props: {
-      hotList: Array
+    data () {
+      return {
+        hotList: []
+      }
+    },
+    created () {
+      axios.get('/static/hot.json')
+          .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataErr.bind(this))
+    },
+    methods: {
+      handleGetDataSucc (res) {
+        res = (res.data) ? res.data : null
+        if (res && res.data) {
+          this.hotList = res.data.hot
+        }
+      },
+      handleGetDataErr () {
+        console.log('error')
+      },
+      handleToDetails (id) {
+        this.$router.push('/details?id=' + id)
+      }
     }
   }
 </script>

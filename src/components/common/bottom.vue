@@ -12,7 +12,7 @@
   let obj = [
           {'tab': '动起来', 'show': true, 'img': '../../../static/img/bottom1.jpg'},
           {'tab': '奔跑圈', 'show': false, 'img': '../../../static/img/bottom3.png'},
-          {'tab': '发布话题', 'show': false, 'img': '../../../static/img/bottom3.png'},
+          {'tab': '发布', 'show': false, 'img': '../../../static/img/bottom3.png'},
           {'tab': '休息区', 'show': false, 'img': '../../../static/img/bottom4.png'},
           {'tab': '关于我', 'show': false, 'img': '../../../static/img/bottom5.png'}
   ]
@@ -24,7 +24,7 @@
       }
     },
     methods: {
-      handleRouter: function (index) {
+      handleRouter (index) {
         for (var i = 0; i < this.list.length; i++) {
           this.list[i].show = false
           this.list[i].img = '../../../static/img/bottom' + (i + 1) + '.png'
@@ -39,6 +39,11 @@
         index === 3 && this.$router.push({ path: '/rest' })
         index === 4 && this.$router.push({ path: '/about' })
       }
+    },
+    activated () {
+      // let location = window.location
+      // console.log(location)
+      // this.handleRouter(index)
     }
   }
 </script>

@@ -3,7 +3,7 @@
     <run-header></run-header>
     <activity @change='handleChangeTab'></activity>
     <my-zone :circleInfo='circleInfo' v-show='flagCir' ref="myZone"></my-zone>
-    <hot :hotList='hotList' v-show='flagHot'></hot>
+    <hot v-show='flagHot'></hot>
     <topic v-show="flagTopic"></topic>
     <bottom></bottom> 
   </div>
@@ -21,7 +21,6 @@
     name: 'running',
     data () {
       return {
-        hotList: [],
         circleInfo: [],
         flagHot: true,
         flagCir: false,
@@ -37,15 +36,18 @@
       Topic
     },
     mounted () {
+      // axios.get('/api/circle/list')
+      //     .then(this.handleGetDataSucc.bind(this))
+      //     .catch(this.handleGetDataErr.bind(this))
       axios.get('/static/running.json')
           .then(this.handleGetDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
     },
     methods: {
       handleGetDataSucc (res) {
+        console.log(res)
         res = (res.data) ? res.data : null
         if (res && res.data) {
-          this.hotList = res.data.hot
           this.circleInfo = res.data.circle
         }
       },
