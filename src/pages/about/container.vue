@@ -1,40 +1,61 @@
 <template>
-  <div class="container border-top">
+  <div class="container">
     <div class="con-list">
-    	<div class="con-item">
-        <div class="con-left">
-          <i class="iconfont icon">&#xe64e;</i>
-          <span>运动商城</span>
-        </div>
-        <i class="iconfont con-right">&#xe612;</i>
-      </div>
       <div class="con-item">
-        <div class="con-left">
-          <i class="iconfont icon">&#xe659;</i>
-          <span>我的跑友</span>
+        <div class="item-img">
+          <img src="../../../static/img/person.jpg">
         </div>
-        <i class="iconfont con-right">&#xe612;</i>
+        <div class="item-info">
+          <h3>个人信息</h3>
+          <span class="item-desc">家乡：{{userinfo.home}}</span>
+          <span class="item-desc">情感：{{userinfo.emotional}}</span>
+        </div>
       </div>
-      <div class="con-item">
-        <div class="con-left">
-            <i class="iconfont icon">&#xe670;</i>
-            <span>运动钱包</span>
+      <div class="con-item item-account">
+        <div class="item-img">
+          <img src="../../../static/img/person.jpg">
         </div>
-        <i class="iconfont con-right">&#xe612;</i>
+        <div class="item-info">
+          <h3>账号</h3>
+          <span class="item-desc">奔跑号：{{userinfo.userID}}</span>
+          <span class="item-desc">奔跑等级：{{userinfo.level}}</span>
+        </div>
       </div>
-      <div class="con-item">
-        <div class="con-left">
-          <i class="iconfont icon">&#xe673;</i>
-          <span>我的俱乐部</span>
+      <div class="con-item item-data">
+        <div class="item-img">
+          <img src="../../../static/img/person.jpg">
         </div>
-        <i class="iconfont con-right">&#xe612;</i>
+        <div class="item-info">
+          <h3>运动数据</h3>
+        </div>
       </div>
-      <div class="con-item">
-        <div class="con-left">
-          <i class="iconfont icon">&#xe63f;</i>
-          <span>我的收藏</span>
+      <div class="data-item">
+        <div class="cumulative">
+          累计步行： <span class="cum-num">{{userinfo.walking}}</span>
         </div>
-        <i class="iconfont con-right">&#xe612;</i>
+        <div class="cumulative">
+          累计步行： <span class="cum-num">{{userinfo.running}}</span>
+        </div>
+        <div class="cumulative">
+          单日最佳成绩： <span class="cum-num">{{userinfo.grade}}</span>
+        </div>
+        <div class="cumulative">
+          最近一周跑步： <span class="cum-num">{{userinfo.recently}}</span>
+        </div>
+      </div>
+      <div class="data-item">
+        <div class="cumulative">
+          累计步行： <span class="cum-num">24km</span>
+        </div>
+        <div class="cumulative">
+          累计步行： <span class="cum-num">0km</span>
+        </div>
+        <div class="cumulative">
+          单日最佳成绩： <span class="cum-num">8381</span>
+        </div>
+        <div class="cumulative">
+          最近一周跑步： <span class="cum-num">0</span>
+        </div>
       </div>
     </div>
   </div>
@@ -42,7 +63,10 @@
 
 <script>
   export default {
-    name: 'container'
+    name: 'container',
+    props: {
+      userinfo: Object
+    }
   }
 </script>
 
@@ -51,6 +75,7 @@
     flex: 1;
     background: #fff;
     overflow: hidden;
+    padding-top: .18rem;
   }
   .con-list{
   	display: flex;
@@ -58,25 +83,65 @@
     overflow: hidden;
   }
   .con-item{
-    font-size: .3rem;
-  	line-height: 1.24rem;
-    color: #333;
-    border-bottom: .02rem solid #bab6b6;
-    padding: 0 .42rem;
+    padding: .25rem .4rem;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .icon{
-    font-size: .52rem;
-    color: #4cc99f;
-    margin-right: .22rem;
-  }
-  .con-left{
-    display: flex;
+    border-top: .01rem solid #ccc;
     align-items: center;
   }
-  .con-right{
-    font-size: .42rem;
+  .item-img{
+    width: .52rem;
+    height: .52rem;
+    margin-right: .23rem;
+  }
+  .item-img img{
+    height: 100%;
+  }
+  .item-info{
+    color: #333;
+  }
+  .item-info h3{
+    font-size: .32rem;
+    line-height: .32rem;
+    margin-bottom: .21rem;
+  }
+  .item-desc{
+    display: block;
+    font-size: .22rem;
+    margin-top: .11rem;
+  }
+  .item-account{
+    border-bottom: .01rem solid #ccc;
+  }
+  .item-data{
+    margin-top: .16rem;
+    padding: .18rem 0.4rem;
+    border-bottom: .01rem solid #ccc;
+    line-height: .52rem;
+  }
+  .item-data .item-info h3{
+    margin-bottom: 0;
+  }
+  .data-item{
+    padding: .22rem .54rem;
+    border-bottom: .01rem solid #ccc;
+  }
+  .cumulative{
+    width: 2.54rem;
+    float: left;
+    font-size: .24rem;
+    margin-right: 1.1rem;
+    margin-bottom: .22rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .cumulative:nth-child(2n){
+    margin-right: 0;
+  }
+  .cumulative:nth-child(3), .cumulative:nth-child(4){
+    margin-bottom: 0;
+  }
+  .cum-num{
+    width: .66rem;
+    display: block;
   }
 </style>

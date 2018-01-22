@@ -1,83 +1,83 @@
 <template>
-	<div class="issue">
-		<div class="header">发布动态</div>
-		<div class="content">
-			<div class="input" >
-				<div contenteditable="true" class="input-info" ref="summary">这一刻你想说的话。。。</div>
-				<div class="input-cont">
-					<div class="img-box">
-						<img src="../../../static/img/isue.png" alt="">
-					</div>
-					<div class="change">
-						<input type="file" class="change-file border" ref="img">
-					</div>
-				</div>
-			</div>
-			<div class="link">
-				<img src="../../../static/img/link2.png" alt="">
-				<input placeholder="请输入标题...." ref="title">
-			</div>
-			<div class="link">
-				<img src="../../../static/img/dd.png" alt="">
-				<input type="text" placeholder="请输入您的地址" ref="localtion"> 
-			</div>
-			<div class="link">
-				<img src="../../../static/img/ding.png" alt="">
-				<select name="" id="" ref="select">
-					<option value="公开">公开</option>
-					<option value="仅自己">仅自己</option>
-					<option value="仅好友">仅好友</option>
-				</select>
-			</div>
-			<div class="btn" @click="handleInputClick">
-				即刻发布
-			</div>
-		</div>
-		<bottom class="bottom"></bottom>
-	</div>
+  <div class="issue">
+    <div class="header">发布动态</div>
+    <div class="content">
+      <div class="input" >
+        <div contenteditable="true" class="input-info" ref="summary">这一刻你想说的话。。。</div>
+        <div class="input-cont">
+          <div class="img-box">
+            <img src="../../../static/img/isue.png" alt="">
+          </div>
+          <div class="change">
+            <input type="file" class="change-file border" ref="img">
+          </div>
+        </div>
+      </div>
+      <div class="link">
+        <img src="../../../static/img/link2.png" alt="">
+        <input placeholder="请输入标题...." ref="title">
+      </div>
+      <div class="link">
+        <img src="../../../static/img/dd.png" alt="">
+        <input type="text" placeholder="请输入您的地址" ref="localtion"> 
+      </div>
+      <div class="link">
+        <img src="../../../static/img/ding.png" alt="">
+        <select name="" id="" ref="select">
+          <option value="公开">公开</option>
+          <option value="仅自己">仅自己</option>
+          <option value="仅好友">仅好友</option>
+        </select>
+      </div>
+      <div class="btn" @click="handleInputClick">
+        即刻发布
+      </div>
+    </div>
+    <bottom class="bottom"></bottom>
+  </div>
 </template>
 
 <script>
-	import Bottom from 'components/common/bottom'
-	import axios from 'axios'
-	export default {
-		name: 'issue',
-		data () {
-			return {
-				title: '',
-				summary: '',
-				city: ''
-			}
-		},
-		components: {
-			Bottom
-		},
-		methods: {
-			handleInputClick () {
-					this.title = this.$refs.title.value
-					this.summary = this.$refs.summary.innerHTML
-					this.city = this.$refs.select.value
-					console.log(this.title + this.summary +  this.city)
-				if (this.title && this.summary && this.city) {
-					let file = this.$refs.img.files[0]
-					let param = new FormData()
-	        param.append('file',file,file.name)
-	        let config = {  
-	          headers:{'Content-Type':'multipart/form-data'}  
-	        }
-	        document.cookie = "id=123"
-	    		axios.post('/api/circle/add', param, config, {
-	    			title: this.title,
-	    			summary: this.summary,
-	    			city: this.city
-	    		})
-	    		 .then((res) => {
-	    		 		console.log(res)
-	    		 })
-				}
-			}
-		}
-	}
+  import Bottom from 'components/common/bottom'
+  import axios from 'axios'
+  export default {
+    name: 'issue',
+    data () {
+      return {
+        title: '',
+        summary: '',
+        city: ''
+      }
+    },
+    components: {
+      Bottom
+    },
+    methods: {
+      handleInputClick () {
+        this.title = this.$refs.title.value
+        this.summary = this.$refs.summary.innerHTML
+        this.city = this.$refs.select.value
+        console.log(this.title + this.summary + this.city)
+        if (this.title && this.summary && this.city) {
+          let file = this.$refs.img.files[0]
+          let param = new FormData()
+          param.append('file', file, file.name)
+          let config = {
+            headers: { 'Content-Type': 'multipart/form-data' }
+          }
+          document.cookie = 'id = 123'
+          axios.post('/api/circle/add', param, config, {
+            title: this.title,
+            summary: this.summary,
+            city: this.city
+          })
+          .then((res) => {
+            console.log(res)
+          })
+        }
+      }
+    }
+  }
 </script>
 
 

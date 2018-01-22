@@ -1,12 +1,13 @@
 <template>
   <div class="index">
     <about-header></about-header>
-    <container></container>
+    <container :userinfo='userinfo'></container>
     <bottom></bottom> 
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
   import Bottom from 'components/common/bottom.vue'
   import Container from './container.vue'
   import AboutHeader from './header.vue'
@@ -16,6 +17,28 @@
       Bottom,
       Container,
       AboutHeader
+    },
+    data () {
+      return {
+        userinfo: {}
+      }
+    },
+    created () {
+      this.getUserInfoData()
+    },
+    methods: {
+      getUserInfoData () {
+        axios.get('/static/userinfo.json')
+              .then(this.handleUserInfoSucc.bind(this))
+              .catch(this.handleUserInfoErr.bind(this))
+      },
+      handleUserInfoSucc (res) {
+        res = (res.data) ? res.data : null
+        this.userinfo = res.data
+      },
+      handleUserInfoErr () {
+        console.log('error')
+      }
     }
   }
 </script>

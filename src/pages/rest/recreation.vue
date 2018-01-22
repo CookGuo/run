@@ -39,7 +39,6 @@
     watch: {
       reaVideo () {
         this.$nextTick(() => {
-          console.log(this.reaVideo)
           this.scroll.refresh()
         })
       }
