@@ -1,7 +1,7 @@
 <template>
   <div class="about-header">
     <div class="header-cont">
-      <i class="iconfont head-icon">&#xe672;</i>
+      <i class="iconfont head-icon" @click='handleEditorInfo'>&#xe672;</i>
       <div class="portrait">
         <div class="head-center">
           <img class="por-img" src="../../../static/img/portrait.png">
@@ -34,6 +34,9 @@
     methods: {
       handleToLogin () {
         this.$router.push('/login')
+      },
+      handleEditorInfo () {
+        this.$emit('change')
       }
     }
   }

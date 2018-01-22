@@ -1,7 +1,8 @@
 <template>
   <div class="index">
-    <about-header></about-header>
-    <container :userinfo='userinfo'></container>
+    <about-header @change='handleChangeInfo'></about-header>
+    <container :userinfo='userinfo' v-show='isShow' ref='contain'></container>
+    <editor :userinfo='userinfo' v-show='!isShow' @change='handleChangeSaveInfo'></editor>
     <bottom></bottom> 
   </div>
 </template>
@@ -10,17 +11,22 @@
   import axios from 'axios'
   import Bottom from 'components/common/bottom.vue'
   import Container from './container.vue'
+  import Editor from './editor.vue'
   import AboutHeader from './header.vue'
   export default {
     name: 'running',
     components: {
       Bottom,
       Container,
-      AboutHeader
+      AboutHeader,
+      Editor
     },
     data () {
       return {
-        userinfo: {}
+        userinfo: {},
+        isShow: true,
+        newHome: '',
+        newEmotional: ''
       }
     },
     created () {
@@ -38,6 +44,19 @@
       },
       handleUserInfoErr () {
         console.log('error')
+      },
+      handleChangeInfo () {
+        this.isShow = false
+      },
+      handleChangeSaveInfo (home, emotional) {
+        document.cookie = 'id = 123'
+        axios.get('/api/userinfo.json?home=' + home + 'emotional=' + emotional)
+              .then(this.handleUserInfoSucc.bind(this))
+              .catch(this.handleUserInfoErr.bind(this))
+        this.newHome = home
+        this.newEmotional = emotional
+        this.$refs.contain.handleChangeData(this.newHome, this.newEmotional)
+        this.isShow = true
       }
     }
   }
@@ -50,6 +69,6 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    background: #3fe9a0;
+    background: #fff;
   }
 </style>
