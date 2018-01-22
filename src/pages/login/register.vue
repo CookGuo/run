@@ -5,10 +5,10 @@
         <img src="../../../static/img/logo.jpg">
       </div>
       <h3 class="title">用户注册</h3>
-      <input class="txt" type="text" placeholder="请输入手机号" ref="username" @blur='handleBlur'>
+      <input class="txt" type="number" placeholder="请输入手机号" ref="username" @blur='handleBlur'>
       <input class="txt" type="password" placeholder="请输入密码" ref="password">
       <div class="code">
-        <input class="code-txt" type="text" placeholder="请输入验证码" ref="codenum">
+        <input class="code-txt" type="number" placeholder="请输入验证码" ref="codenum" @blur='handleBlurCode'>
         <button class="code-btn" @click='handleGetPhoneCode' ref='codeBtn'>获取验证码</button>
       </div>
       <button class="btn" @click="handleUserRegister">注册</button>
@@ -98,11 +98,17 @@
       handleBlur () {
         this.handleValidate(this.$refs.username.value)
       },
+      handleBlurCode () {
+        let codeReg = /^\d{6}$/
+        if (!codeReg.test(this.$refs.codenum.value)) {
+          alert('验证码必须是六位')
+        } else {
+          return true
+        }
+      },
       handleValidate (phone) {
         let mobileReg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
-        if (phone === '') {
-          alert('请输入手机号')
-        } else if (!mobileReg.test(phone)) {
+        if (!mobileReg.test(phone)) {
           alert('请输入正确的手机号')
         } else {
           return true

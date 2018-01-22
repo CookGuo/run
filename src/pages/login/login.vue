@@ -5,7 +5,7 @@
     		<img src="../../../static/img/logo.jpg">
     	</div>
       <h3 class="title">账号登录</h3>
-      <input class="txt" type="text" placeholder="请输入手机号" ref='loginUser'>
+      <input class="txt" type="number" placeholder="请输入手机号" ref='loginUser' @blur='handleBlur'>
       <input class="txt" type="password" placeholder="请输入密码" ref='loginPwd'>
       <button class="btn" @click='login'>登录</button>
       <span class="log-reg" @click='handleToRegister'>没有账号？马上<a class="a-reg">注册</a></span>
@@ -52,11 +52,12 @@
       handleUserLoginErr () {
         console.log('error')
       },
+      handleBlur () {
+        this.handleValidate(this.$refs.loginUser.value)
+      },
       handleValidate (phone) {
         let mobileReg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
-        if (phone === '') {
-          alert('请输入手机号')
-        } else if (!mobileReg.test(phone)) {
+        if (!mobileReg.test(phone)) {
           alert('请输入正确的手机号')
         } else {
           return true
