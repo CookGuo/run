@@ -37,19 +37,19 @@
       handleUserRegister () {
         this.username = this.$refs.username.value
         this.password = this.$refs.password.value
-        axios.get('/api/registe.json')
-            .then(this.handleUserRegisterSucc.bind(this))
-            .catch(this.handleUserRegisterErr.bind(this))
-        // axios({
-        //   method: 'post',
-        //   url: '/api/reg',
-        //   data: {
-        //     username: this.username,
-        //     password: this.password,
-        //     code: this.code
-        //   }
-        // }).then(this.handleUserRegisterSucc.bind(this))
-        // .catch(this.handleUserRegisterErr.bind(this))
+        // axios.get('/api/registe.json')
+        //     .then(this.handleUserRegisterSucc.bind(this))
+        //     .catch(this.handleUserRegisterErr.bind(this))
+        axios({
+          method: 'post',
+          url: '/api/reg',
+          data: {
+            username: this.username,
+            password: this.password,
+            code: this.code
+          }
+        }).then(this.handleUserRegisterSucc.bind(this))
+        .catch(this.handleUserRegisterErr.bind(this))
       },
       handleUserRegisterSucc (res) {
         res = (res.data) ? res.data : null

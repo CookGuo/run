@@ -50,7 +50,7 @@
       },
       handleChangeSaveInfo (home, emotional) {
         document.cookie = 'id = 123'
-        axios.get('/api/userinfo.json?home=' + home + 'emotional=' + emotional)
+        axios.get('/api/userinfo?home=' + home + 'emotional=' + emotional)
               .then(this.handleUserInfoSucc.bind(this))
               .catch(this.handleUserInfoErr.bind(this))
         this.newHome = home
