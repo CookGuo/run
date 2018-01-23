@@ -45,7 +45,8 @@
       },
       handleUserLoginSucc (res) {
         res = (res.data) ? res.data : null
-        if (res.data.userId && this.handleValidate(this.$refs.loginUser.value)) {
+        if (res.other && this.handleValidate(this.$refs.loginUser.value)) {
+          document.cookie = 'userid =' + res.other
           this.$router.push('/')
         }
       },

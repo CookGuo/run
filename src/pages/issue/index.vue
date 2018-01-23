@@ -68,7 +68,6 @@
           let config = {
             headers: { 'Content-Type': 'multipart/form-data' }
           }
-          document.cookie = 'id = 123'
           axios.post('/api/circle/add', param, config)
           .then((res) => {
             console.log(res)
