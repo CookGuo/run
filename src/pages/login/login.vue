@@ -32,7 +32,7 @@
         } else {
           this.username = this.$refs.loginUser.value
           this.password = this.$refs.loginPwd.value
-          axios.post('/api/userlogin.json', {
+          axios.post('/api/user/login_user', {
             username: this.username,
             password: this.password
           })

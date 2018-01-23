@@ -42,7 +42,7 @@
         //     .catch(this.handleUserRegisterErr.bind(this))
         axios({
           method: 'post',
-          url: '/api/reg',
+          url: '/api/user/reg',
           data: {
             username: this.username,
             password: this.password,
