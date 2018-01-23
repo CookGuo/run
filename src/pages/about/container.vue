@@ -78,8 +78,8 @@
 
 <style scoped>
   .container {
-    /*flex: 1;*/
-    height: 6.88rem;
+    flex: 1;
+    /*height: 6.88rem;*/
     background: #fff;
     padding-top: .18rem;
   }
