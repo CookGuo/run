@@ -34,7 +34,7 @@
     },
     methods: {
       getUserInfoData () {
-        axios.get('/static/userinfo.json')
+        axios.get('/api/userinfo')
               .then(this.handleUserInfoSucc.bind(this))
               .catch(this.handleUserInfoErr.bind(this))
       },
