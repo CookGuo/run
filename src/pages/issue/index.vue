@@ -62,15 +62,14 @@
           let file = this.$refs.img.files[0]
           let param = new FormData()
           param.append('file', file, file.name)
+          param.append('title', this.title)
+          param.append('summary', this.summary)
+          param.append('city', this.city)
           let config = {
             headers: { 'Content-Type': 'multipart/form-data' }
           }
           document.cookie = 'id = 123'
-          axios.post('/api/circle/add', param, config, {
-            title: this.title,
-            summary: this.summary,
-            city: this.city
-          })
+          axios.post('/api/circle/add', param, config)
           .then((res) => {
             console.log(res)
           })
