@@ -45,7 +45,7 @@
       },
       handleUserLoginSucc (res) {
         res = (res.data) ? res.data : null
-        if (res.other && this.handleValidate(this.$refs.loginUser.value)) {
+        if ((res.other && this.handleValidate(this.$refs.loginUser.value)) || (res.other)) {
           document.cookie = 'userid =' + res.other
           this.$router.push('/')
         }
@@ -60,6 +60,7 @@
         let mobileReg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
         if (!mobileReg.test(phone)) {
           alert('请输入正确的手机号')
+          return false
         } else {
           return true
         }

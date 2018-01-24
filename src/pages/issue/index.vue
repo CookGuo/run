@@ -46,7 +46,8 @@
       return {
         title: '',
         summary: '',
-        city: ''
+        city: '',
+        isBtn: false
       }
     },
     components: {
@@ -54,26 +55,36 @@
     },
     methods: {
       handleInputClick () {
-        this.title = this.$refs.title.value
-        this.summary = this.$refs.summary.innerHTML
-        this.city = this.$refs.select.value
-        console.log(this.title + this.summary + this.city)
-        if (this.title && this.summary && this.city) {
-          let file = this.$refs.img.files[0]
-          let param = new FormData()
-          param.append('file', file, file.name)
-          param.append('title', this.title)
-          param.append('summary', this.summary)
-          param.append('city', this.city)
-          let config = {
-            headers: { 'Content-Type': 'multipart/form-data' }
-          }
-          axios.post('/api/circle/add', param, config)
-          .then((res) => {
-            console.log(res)
-          })
-        }
+      	if (this.isBtn) {
+	        this.title = this.$refs.title.value
+	        this.summary = this.$refs.summary.innerHTML
+	        this.city = this.$refs.select.value
+	        if (this.title && this.summary && this.city) {
+	          let file = this.$refs.img.files[0]
+	          let param = new FormData()
+	          param.append('file', file, file.name)
+	          param.append('title', this.title)
+	          param.append('summary', this.summary)
+	          param.append('city', this.city)
+	          let config = {
+	            headers: { 'Content-Type': 'multipart/form-data' }
+	          }
+	          axios.post('/api/circle/add', param, config)
+	          .then((res) => {
+	            console.log(res)
+	          })
+	        }
+      	} else {
+      		console.log(11)
+      	}
       }
+    },
+    mounted() {
+    	if (!document.cookie) {
+    		alert("请先登录")
+    	} else {
+    		this.isBtn = true
+    	}
     }
   }
 </script>
