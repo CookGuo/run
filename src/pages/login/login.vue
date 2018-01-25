@@ -30,17 +30,19 @@
         if (this.$refs.loginUser.value === '' || this.$refs.loginPwd.value === '') {
           alert('请输入用户名或密码')
         } else {
-          this.username = this.$refs.loginUser.value
-          this.password = this.$refs.loginPwd.value
-          axios.post('/api/user/login_user', {
-            username: this.username,
-            password: this.password
-          })
-          .then(this.handleUserLoginSucc.bind(this))
-          .catch(this.handleUserLoginErr.bind(this))
-          // axios.get('/api/userlogin.json')
-          //     .then(this.handleUserLoginSucc.bind(this))
-          //     .catch(this.handleUserLoginErr.bind(this))
+          if(this.handleValidate(this.$refs.loginUser.value)){  
+            this.username = this.$refs.loginUser.value
+            this.password = this.$refs.loginPwd.value
+            axios.post('/api/user/login_user', {
+              username: this.username,
+              password: this.password
+            })
+            .then(this.handleUserLoginSucc.bind(this))
+            .catch(this.handleUserLoginErr.bind(this))
+            // axios.get('/api/userlogin.json')
+            //     .then(this.handleUserLoginSucc.bind(this))
+            //     .catch(this.handleUserLoginErr.bind(this))
+          }
         }
       },
       handleUserLoginSucc (res) {

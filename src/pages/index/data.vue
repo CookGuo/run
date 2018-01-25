@@ -101,7 +101,6 @@
     display: flex;
     text-align: center;
     justify-content: space-around;
-    height: 63%;
   }
   .con-item{
     display: flex;

@@ -83,7 +83,7 @@
       },
       handlePhoneCodeSucc (res) {
         res = (res.data) ? res.data : null
-        this.code = res.code
+        this.code = Number(res.code)
       },
       handleDataCorrect () {
         this.inputCode = this.$refs.codenum.value
