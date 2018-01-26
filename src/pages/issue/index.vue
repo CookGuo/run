@@ -6,10 +6,10 @@
         <div contenteditable="true" class="input-info" ref="summary">这一刻你想说的话。。。</div>
         <div class="input-cont">
           <div class="img-box">
-            <img src="../../../static/img/isue.png" alt="">
+            <img src="" alt="" ref="imgshow">
           </div>
           <div class="change">
-            <input type="file" class="change-file border" ref="img">
+            <input type="file" class="change-file border" ref="img" @change="handleImgChange" accept="image/*" multiple="multiple"/>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
     },
     methods: {
       handleInputClick () {
-        if (this.isBtn) {
+      	if (this.isBtn) {
           this.title = this.$refs.title.value
           this.summary = this.$refs.summary.innerHTML
           this.city = this.$refs.select.value
@@ -74,8 +74,22 @@
               console.log(res)
             })
           }
-        } else {
-          console.log(11)
+      	} else {
+      		console.log(11)
+        }
+      },
+      handleImgChange(e) {
+        var that = e.target
+        var that_ = this
+        var file = that.files[0]
+        var reader = new FileReader()   
+        reader.readAsDataURL(file)
+        if(file.name.indexOf("jpg") != -1 || file.name.indexOf("JPG") != -1 || file.name.indexOf("PNG") != -1 || file.name.indexOf("png") != -1) {   
+            reader.onload = function(e){
+               that_.$refs.imgshow.src = e.target.result
+            }
+        }else {
+          alert("请选择正确的图片格式！")
         }
       }
     },
