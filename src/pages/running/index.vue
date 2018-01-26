@@ -45,7 +45,6 @@
     },
     methods: {
       handleGetDataSucc (res) {
-        console.log(res)
         res = (res.data) ? res.data : null
         if (res) {
           this.circleInfo = res.other

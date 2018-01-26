@@ -40,7 +40,9 @@
       },
       handleUserInfoSucc (res) {
         res = (res.data) ? res.data : null
-        this.userinfo = res.data
+        if (res) {
+          this.userinfo = res.other
+        }
       },
       handleUserInfoErr () {
         console.log('error')
@@ -50,7 +52,7 @@
       },
       handleChangeSaveInfo (home, emotional) {
         document.cookie = 'id = 123'
-        axios.get('/api/user/update?home=' + home + 'emotional=' + emotional)
+        axios.get('/api/user/update?city=' + home + '&nickname=' + emotional)
               .then(this.handleUserInfoSucc.bind(this))
               .catch(this.handleUserInfoErr.bind(this))
         this.newHome = home

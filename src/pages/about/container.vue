@@ -8,7 +8,7 @@
         <div class="item-info">
           <h3>个人信息</h3>
           <span class="item-desc">家乡：<em ref="home">{{userinfo.city}}</em></span>
-          <span class="item-desc">情感：<em ref="emotional">{{userinfo.nickname}}</em></span>
+          <span class="item-desc">昵称：<em ref="emotional">{{userinfo.nickname}}</em></span>
         </div>
       </div>
       <div class="con-item item-account">
