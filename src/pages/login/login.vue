@@ -5,8 +5,15 @@
     		<img src="../../../static/img/logo.jpg">
     	</div>
       <h3 class="title">账号登录</h3>
-      <input class="txt" type="number" placeholder="请输入手机号" ref='loginUser' @blur='handleBlur'>
-      <input class="txt" type="password" placeholder="请输入密码" ref='loginPwd'>
+      <p>
+        <span class="checkphone" v-show="checkphone">请输入正确的手机号！</span>
+        <input class="txt" type="text" placeholder="请输入手机号" 
+        ref='loginUser' @blur.stop='handleBlur' @focus="handleFocus">
+      </p>
+      <p >
+        <span class="checkpassword" v-show="checkpassword">密码6-12数字/字母/下划线组合！</span>
+        <input class="txt" type="password" placeholder="请输入密码" ref='loginPwd' @blur.stop="handlePassword" @focus="handleFocus">
+      </p>
       <button class="btn" @click='login'>登录</button>
       <span class="log-reg" @click='handleToRegister'>没有账号？马上<a class="a-reg">注册</a></span>
     </div>
@@ -19,29 +26,35 @@
     data () {
       return {
         username: '',
-        password: ''
+        password: '',
+        checkphone: false,
+        checkpassword: false,
+        phone: false,
+        password: false
       }
     },
     methods: {
       handleToRegister () {
+        this.checkphone = false
+        this.checkpassword = false
         this.$emit('toRegister')
       },
       login () {
         if (this.$refs.loginUser.value === '' || this.$refs.loginPwd.value === '') {
-          alert('请输入用户名或密码')
+          this.checkpassword = true
+          this.checkphone = true
         } else {
           if(this.handleValidate(this.$refs.loginUser.value)){  
             this.username = this.$refs.loginUser.value
             this.password = this.$refs.loginPwd.value
-            axios.post('/api/user/login_user', {
-              username: this.username,
-              password: this.password
-            })
-            .then(this.handleUserLoginSucc.bind(this))
-            .catch(this.handleUserLoginErr.bind(this))
-            // axios.get('/api/userlogin.json')
-            //     .then(this.handleUserLoginSucc.bind(this))
-            //     .catch(this.handleUserLoginErr.bind(this))
+            if (this.password && this.phone) {
+              axios.post('/api/user/login_user', {
+                username: this.username,
+                password: this.password
+              })
+              .then(this.handleUserLoginSucc.bind(this))
+              .catch(this.handleUserLoginErr.bind(this))
+            }
           }
         }
       },
@@ -61,17 +74,35 @@
       handleValidate (phone) {
         let mobileReg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
         if (!mobileReg.test(phone)) {
-          alert('请输入正确的手机号')
+          this.checkphone = true
+          this.phone = false
           return false
         } else {
+          this.phone = true
+          this.checkphone = false
           return true
         }
+      },
+      handlePassword (e) {
+        var value = e.target.value
+        var passwordReg = /^\w{6,12}$/
+        if (!passwordReg.test(value)) {
+           this.checkpassword = true
+           this.password = false
+        } else {
+          this.checkpassword = false
+          this.password = true
+        }
+      },
+      handleFocus () {
+        this.checkphone = false
+        this.checkpassword = false
       }
     }
   }
 </script>
 
-<style>
+<style scoped>
   .login-wrap{
     text-align:center;
     position: absolute;
@@ -91,11 +122,12 @@
   }
   .txt{
     width: 5rem;
-    height: .4rem;
+    height: .5rem;
+    border: none;
     line-height: .4rem;
     margin:0 auto;
-    margin-bottom: .2rem;
     outline:none;
+    margin-bottom: .2rem;
     padding: .2rem;
     border:1px solid #888;
     border-radius: .4rem;
@@ -105,7 +137,7 @@
     width: 5.4rem;
     height: .8rem;
     line-height: .8rem;
-    border:none; 
+    border: none; 
     background-color:#41b883; 
     color:#fff; 
     font-size: .32rem; 
@@ -122,5 +154,11 @@
   }
   .a-reg{
     text-decoration: underline;
+  }
+  .checkphone, .checkpassword {
+    text-align: center;
+    line-height: .5rem;
+    color: red;
+    font-size: .18rem;
   }
 </style>

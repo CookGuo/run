@@ -71,7 +71,12 @@
 	          }
 	          axios.post('/api/circle/add', param, config)
 	          .then((res) => {
-	            console.log(res)
+	            if (res) {
+	            	res = (res.data) ? res.data : null
+	            	if (res && res.success) {
+	            		this.$push('/running')
+	            	}
+	            }
 	          })
 	        }
       	} else {

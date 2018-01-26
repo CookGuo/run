@@ -118,7 +118,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .register-wrap{
     text-align:center;
     position: absolute;
