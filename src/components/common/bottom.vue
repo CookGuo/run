@@ -41,9 +41,12 @@
       }
     },
     activated () {
-      // let location = window.location
-      // console.log(location)
-      // this.handleRouter(index)
+      let location = window.location
+      location.href.split('#/')[1] === '' && this.handleRouter(0)
+      location.href.split('#/')[1] === 'running' && this.handleRouter(1)
+      location.href.split('#/')[1] === 'issue' && this.handleRouter(2)
+      location.href.split('#/')[1] === 'rest' && this.handleRouter(3)
+      location.href.split('#/')[1] === 'about' && this.handleRouter(4)
     }
   }
 </script>

@@ -12,7 +12,7 @@
     name: 'login-index',
     methods: {
       handleBackIndex () {
-        this.$router.push('/')
+        this.$router.push('/about')
       }
     }
   }

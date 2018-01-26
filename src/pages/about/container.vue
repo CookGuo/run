@@ -116,6 +116,10 @@
   }
   .item-desc{
     display: block;
+    width: 6rem;
+    overflow: hidden;
+    white-space: nowrap;
+    height: .22rem;
     font-size: .22rem;
     margin-top: .11rem;
   }

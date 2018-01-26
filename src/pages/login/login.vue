@@ -44,7 +44,7 @@
           this.checkpassword = true
           this.checkphone = true
         } else {
-          if(this.handleValidate(this.$refs.loginUser.value)){  
+          if (this.handleValidate(this.$refs.loginUser.value)) {
             this.username = this.$refs.loginUser.value
             this.password = this.$refs.loginPwd.value
             if (this.password && this.phone) {
@@ -62,7 +62,7 @@
         res = (res.data) ? res.data : null
         if ((res.other && this.handleValidate(this.$refs.loginUser.value)) || (res.other)) {
           document.cookie = 'userid =' + res.other
-          this.$router.push('/')
+          this.$router.push('/about')
         }
       },
       handleUserLoginErr () {
