@@ -28,7 +28,7 @@
                 <span class="hot iconfont">&#xe621;</span>
               </div> 
               <div class="circle-bottom">
-                <img class="pub" src="../../../static/img/con2.jpg" alt="">
+                <img class="pub" :src="item.img" alt="">
                 <p class="pub-con">{{item.summary}}</p>
                 <div class="address">
                    <span class="addr iconfont">&#xe625;</span><span class="adr">{{item.city}}</span>

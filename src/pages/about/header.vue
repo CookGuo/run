@@ -7,7 +7,7 @@
           <img class="por-img" src="../../../static/img/portrait.png">
         </div>  
       </div>
-      <i class="iconfont head-icon" @click='handleToLogin'>&#xe618;</i>
+      <i class="iconfont head-icon" @click='handleToLogin'>&#xe659;</i>
   	</div>
     <h2 class="about-title">新导航人</h2>
     <h4 class="desc">这个家伙很懒，什么都没有留下</h4>
