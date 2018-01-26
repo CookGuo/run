@@ -7,8 +7,8 @@
         </div>
         <div class="item-info">
           <h3>个人信息</h3>
-          <span class="item-desc">家乡；<input ref='home' type="text" :value='userinfo.home' class="input-editor" /></span>
-          <span class="item-desc">昵称；<input ref='emotional' type="text" :value='userinfo.emotional' class="input-editor" /></span>
+          <span class="item-desc">家乡：<input ref='home' type="text" class="input-editor" maxlength=10 /></span>
+          <span class="item-desc">昵称：<input ref='emotional' type="text" class="input-editor" maxlength=10 /></span>
         </div>
       </div>
       <div class="con-item item-account">
@@ -123,6 +123,9 @@
     margin-bottom: .21rem;
   }
   .item-desc{
+    width: 6rem;
+    overflow: hidden;
+    white-space: nowrap;
     display: block;
     font-size: .22rem;
     margin-top: .11rem;

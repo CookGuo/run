@@ -49,7 +49,7 @@
         res = (res.data) ? res.data : null
         if ((res.other && this.handleValidate(this.$refs.loginUser.value)) || (res.other)) {
           document.cookie = 'userid =' + res.other
-          this.$router.push('/')
+          this.$router.push('/about')
         }
       },
       handleUserLoginErr () {

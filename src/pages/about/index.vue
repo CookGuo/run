@@ -29,7 +29,8 @@
         newEmotional: ''
       }
     },
-    created () {
+    activated () {
+      console.log(123)
       this.getUserInfoData()
     },
     methods: {
