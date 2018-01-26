@@ -47,8 +47,8 @@
       handleGetDataSucc (res) {
         console.log(res)
         res = (res.data) ? res.data : null
-        if (res && res.data) {
-          this.circleInfo = res.data.other.circle
+        if (res) {
+          this.circleInfo = res.other
         }
       },
       handleGetDataErr () {
