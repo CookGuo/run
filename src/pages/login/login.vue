@@ -30,7 +30,7 @@
         if (this.$refs.loginUser.value === '' || this.$refs.loginPwd.value === '') {
           alert('请输入用户名或密码')
         } else {
-          if(this.handleValidate(this.$refs.loginUser.value)){  
+          if (this.handleValidate(this.$refs.loginUser.value)) {
             this.username = this.$refs.loginUser.value
             this.password = this.$refs.loginPwd.value
             axios.post('/api/user/login_user', {

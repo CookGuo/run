@@ -39,7 +39,7 @@
         this.password = this.$refs.password.value
         // axios.get('/api/registe.json')
         //     .then(this.handleUserRegisterSucc.bind(this))
-        //     .catch(this.handleUserRegisterErr.bind(this))
+            // .catch(this.handleUserRegisterErr.bind(this))
         axios({
           method: 'post',
           url: '/api/user/reg',
@@ -53,7 +53,7 @@
       },
       handleUserRegisterSucc (res) {
         res = (res.data) ? res.data : null
-        this.handleDataCorrect()
+        this.handleDataCorrect(res)
       },
       handleUserRegisterErr () {
         console.log('服务器连接失败')
@@ -83,16 +83,20 @@
       },
       handlePhoneCodeSucc (res) {
         res = (res.data) ? res.data : null
-        this.code = Number(res.code)
+        this.code = res.code
       },
-      handleDataCorrect () {
-        this.inputCode = this.$refs.codenum.value
-        if (this.inputCode !== this.code) {
-          alert('验证码输入错误')
-        } else if (this.inputCode === '') {
-          alert('请输入验证码')
-        } else if (this.inputCode === this.code && this.handleValidate(this.$refs.username.value)) {
-          this.$emit('toLogin')
+      handleDataCorrect (res) {
+        this.inputCode = Number(this.$refs.codenum.value)
+        if (res.error) {
+          alert('用户名已注册')
+        } else {  
+          if (this.inputCode !== this.code) {
+            alert('验证码输入错误')
+          } else if (this.inputCode === '') {
+            alert('请输入验证码')
+          } else {
+            this.$emit('toLogin')
+          }
         }
       },
       handleBlur () {
