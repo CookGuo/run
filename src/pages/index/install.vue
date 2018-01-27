@@ -15,7 +15,7 @@
   export default {}
 </script>
 
-<style>
+<style scoped>
   .install{
     display: flex;
     height: .58rem;

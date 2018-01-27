@@ -3,32 +3,33 @@
     <div class="header">发布动态</div>
     <div class="content">
       <div class="input" >
-        <div contenteditable="true" class="input-info" ref="summary">这一刻你想说的话。。。</div>
+        <div contenteditable="true" class="input-info" ref="summary" @click="handleFocus">这一刻你想说的话。。。</div>
         <div class="input-cont">
           <div class="img-box">
             <img src="" alt="" ref="imgshow">
           </div>
           <div class="change">
-            <input type="file" class="change-file border" ref="img" @change="handleImgChange" accept="image/*" multiple="multiple"/>
+            <input type="file" class="change-file border" ref="img" @change="handleImgChange" accept="image/*" multiple="multiple" @click="handleFocus"/>
           </div>
         </div>
       </div>
       <div class="link">
         <img src="../../../static/img/link2.png" alt="">
-        <input placeholder="请输入标题...." ref="title">
+        <input placeholder="请输入标题...." ref="title" @click="handleFocus">
       </div>
       <div class="link">
         <img src="../../../static/img/dd.png" alt="">
-        <input type="text" placeholder="请输入您的地址" ref="localtion"> 
+        <input type="text" placeholder="请输入您的地址" ref="localtion" @click="handleFocus"> 
       </div>
       <div class="link">
         <img src="../../../static/img/ding.png" alt="">
-        <select name="" id="" ref="select">
+        <select name="" id="" ref="select" @click="handleFocus">
           <option value="公开">公开</option>
           <option value="仅自己">仅自己</option>
           <option value="仅好友">仅好友</option>
         </select>
       </div>
+      <p v-show="isp" class="check">请将信息填完整！</p>
       <div class="btn" @click="handleInputClick">
         即刻发布
       </div>
@@ -47,7 +48,8 @@
         title: '',
         summary: '',
         city: '',
-        isBtn: false
+        isBtn: false,
+        isp: false
       }
     },
     components: {
@@ -55,27 +57,35 @@
     },
     methods: {
       handleInputClick () {
-      	if (this.isBtn) {
+        if (this.isBtn) {
           this.title = this.$refs.title.value
           this.summary = this.$refs.summary.innerHTML
           this.city = this.$refs.select.value
           if (this.title && this.summary && this.city) {
-            let file = this.$refs.img.files[0]
-            let param = new FormData()
-            param.append('file', file, file.name)
-            param.append('title', this.title)
-            param.append('summary', this.summary)
-            param.append('city', this.city)
-            let config = {
-              headers: { 'Content-Type': 'multipart/form-data' }
-            }
-            axios.post('/api/circle/add', param, config)
-            .then((res) => {
-              console.log(res)
-            })
+            console.log(111)
+	          let file = this.$refs.img.files[0]
+	          let param = new FormData()
+	          param.append('file', file, file.name)
+	          param.append('title', this.title)
+	          param.append('summary', this.summary)
+	          param.append('city', this.city)
+	          let config = {
+	            headers: { 'Content-Type': 'multipart/form-data' }
+	          }
+	          axios.post('/api/circle/add', param, config)
+	          .then((res) => {
+	            if (res) {
+	            	res = (res.data) ? res.data : null
+	            	if (res && res.success) {
+	            		this.$push('/running')
+	            	}
+	            }
+	          })
+	        } else {
+            this.isp = true
           }
-      	} else {
-      		console.log(11)
+        } else {
+          this.$router.push('/login')
         }
       },
       handleImgChange(e) {
@@ -91,13 +101,18 @@
         }else {
           alert("请选择正确的图片格式！")
         }
+      },
+      handleFocus () {
+        this.isp = false
       }
     },
     mounted () {
-      if (!document.cookie) {
-        alert('请先登录')
-      } else {
+      if (!document.cookie.userid) {
+        console.log(145)
         this.isBtn = true
+      } else {
+        console.log(document.cookie)
+        this.isBtn = false
       }
     }
   }
@@ -200,6 +215,11 @@
   .input-info {
     height: 2rem;
     overflow: hidden;
+  }
+  .check {
+    color: red;
+    text-align: center;
+    margin-top: .4rem;
   }
 </style>
 

@@ -69,7 +69,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .data{
     flex: 1;
     width: 100%;
