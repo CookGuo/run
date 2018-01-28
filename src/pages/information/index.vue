@@ -23,8 +23,8 @@
     methods: {
       handleToNews (id) {
         axios.get('/api/rest/new?id=' + id)
-             .then(this.handleSuccessRest.bind(this))
-             .catch(this.handleErrorRest.bind(this))
+             .then(this.handleSuccessNews.bind(this))
+             .catch(this.handleErrorNews.bind(this))
         // axios.get('/static/new.json?id=' + id)
         //      .then(this.handleSuccessNews.bind(this))
         //      .catch(this.handleErrorNews.bind(this))
