@@ -32,15 +32,15 @@
         } else {
           this.username = this.$refs.loginUser.value
           this.password = this.$refs.loginPwd.value
-          // axios.post('/api/userlogin.json', {
-          //   username: this.username,
-          //   password: this.password
-          // })
-          // .then(this.handleUserLoginSucc.bind(this))
-          // .catch(this.handleUserLoginErr.bind(this))
-          axios.get('/api/userlogin.json')
-              .then(this.handleUserLoginSucc.bind(this))
-              .catch(this.handleUserLoginErr.bind(this))
+          axios.post('/api/userlogin.json', {
+            username: this.username,
+            password: this.password
+          })
+          .then(this.handleUserLoginSucc.bind(this))
+          .catch(this.handleUserLoginErr.bind(this))
+          // axios.get('/api/userlogin.json')
+          //     .then(this.handleUserLoginSucc.bind(this))
+          //     .catch(this.handleUserLoginErr.bind(this))
         }
       },
       handleUserLoginSucc (res) {
