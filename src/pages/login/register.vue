@@ -101,7 +101,7 @@
         this.inputCode = Number(this.$refs.codenum.value)
         if (res.error === false) {
           this.$refs.regname.innerHTML = '用户名已注册'
-        } else {  
+        } else {
           if (this.inputCode !== this.code) {
             this.$refs.regcode.innerHTML = '验证码输入错误'
           } else if (this.inputCode === '') {
@@ -117,7 +117,7 @@
       handleBlurCode () {
         let codeReg = /^\d{6}$/
         if (!codeReg.test(this.$refs.codenum.value)) {
-            this.$refs.regcode.innerHTML = '验证码必须是六位'
+          this.$refs.regcode.innerHTML = '验证码必须是六位'
         } else {
           return true
         }

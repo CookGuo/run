@@ -20,7 +20,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import BScroll from 'better-scroll'
   export default {
     name: 'rest',
@@ -40,7 +39,7 @@
       })
     },
     methods: {
-      handleClickToInfo (id) { 
+      handleClickToInfo (id) {
         this.$router.push('/information/id=' + id)
       }
     }

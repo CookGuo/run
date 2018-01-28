@@ -1,15 +1,15 @@
 <template>
   <div class="container">
     <div>
-      <div class="con-info border-bottom" :key="reaList[0].id" > 
-          <h1 class="title">{{reaList[0].title}}</h1>
-          <p>{{reaList[0].time}}</p>
+      <div class="con-info border-bottom"> 
+          <h1 class="title">{{reaList.title}}</h1>
+          <p>{{reaList.time}}</p>
       </div>
       <div class="con-desc">
-        <div class="con-main" v-html='reaList[0].container'>
+        <div class="con-main" v-html='reaList.container'>
         </div>
         <div class="img-box">
-          <div class="img-cont" v-for="items in reaList[0].imgBox" :key="items.imgUrl">
+          <div class="img-cont" v-for="items in reaList.imgBox" :key="items.id">
             <img class="img" :src="items.imgUrl" alt="">
           </div>
         </div>
@@ -22,7 +22,7 @@
   export default {
     name: 'info-contanier',
     props: {
-      reaList: Array
+      reaList: Object
     }
   }
 </script>

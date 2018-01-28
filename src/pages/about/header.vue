@@ -13,15 +13,15 @@
     <h4 class="desc">这个家伙很懒，什么都没有留下</h4>
     <div class="head-list">
       <div class="heade-item">
-        <span class="num">2.5w</span>
+        <span class="num">0</span>
         粉丝
       </div>
       <div class="heade-item">
-        <span class="num">108</span>
+        <span class="num">0</span>
         关注
       </div>
       <div class="heade-item">
-        <span class="num">106</span>
+        <span class="num">0</span>
         消息
       </div>
     </div>

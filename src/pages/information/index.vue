@@ -17,33 +17,28 @@
     },
     data () {
       return {
-        reaList: []
+        reaList: {}
       }
     },
     methods: {
       handleToNews (id) {
-        console.log(id)
         // axios.get('/api/rest/new?id=' + id)
         //      .then(this.handleSuccessRest.bind(this))
         //      .catch(this.handleErrorRest.bind(this))
-        axios.get('/static/new.json?')
+        axios.get('/static/new.json?id=' + id)
              .then(this.handleSuccessNews.bind(this))
              .catch(this.handleErrorNews.bind(this))
       },
       handleSuccessNews (res) {
-        console.log(res)
         let ret = (res.data) ? (res = res.data) : res
-        ret && (this.reaList = ret.data.reaList)
-        console.log(this.reaList[0])
+        ret && (this.reaList = ret.data.reaList[0])
       },
       handleErrorNews () {
         console.log('error')
       }
     },
-    activated () {
-      console.log(1)
+    created () {
       let id = this.$router.history.current.params.id.substring(3)
-      console.log(this.$router)
       this.handleToNews(id)
     }
   }
