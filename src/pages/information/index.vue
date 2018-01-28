@@ -30,8 +30,12 @@
         //      .catch(this.handleErrorNews.bind(this))
       },
       handleSuccessNews (res) {
-        let ret = (res.data) ? (res = res.data) : res
-        ret && (this.reaList = ret.data.reaList)
+        console.log(res)
+        console.log(123)
+        res = (res.data) ? res.data : null
+        if (res && res.data) {
+          this.reaList = res.data.reaList
+        }
       },
       handleErrorNews () {
         console.log('error')
