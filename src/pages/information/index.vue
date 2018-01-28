@@ -31,7 +31,7 @@
       },
       handleSuccessNews (res) {
         let ret = (res.data) ? (res = res.data) : res
-        ret && (this.reaList = ret.data.reaList[0])
+        ret && (this.reaList = ret.data.reaList)
       },
       handleErrorNews () {
         console.log('error')

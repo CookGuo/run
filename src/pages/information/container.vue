@@ -3,15 +3,10 @@
     <div>
       <div class="con-info border-bottom"> 
           <h1 class="title">{{reaList.title}}</h1>
-          <p>{{reaList.time}}</p>
+          <p>{{reaList.time}}&nbsp;&nbsp;{{reaList.author}}</p>
       </div>
       <div class="con-desc">
         <div class="con-main" v-html='reaList.container'>
-        </div>
-        <div class="img-box">
-          <div class="img-cont" v-for="items in reaList.imgBox" :key="items.id">
-            <img class="img" :src="items.imgUrl" alt="">
-          </div>
         </div>
       </div>
     </div>
@@ -47,6 +42,9 @@
     font-size: 18px;
     line-height: 30px;
     padding: .4rem .427rem;
+  }
+  .con-main img{
+    width: 100%;
   }
   .img-cont{
     margin-bottom: .3rem;
