@@ -22,12 +22,12 @@
     },
     methods: {
       handleToNews (id) {
-        // axios.get('/api/rest/new?id=' + id)
-        //      .then(this.handleSuccessRest.bind(this))
-        //      .catch(this.handleErrorRest.bind(this))
-        axios.get('/static/new.json?id=' + id)
-             .then(this.handleSuccessNews.bind(this))
-             .catch(this.handleErrorNews.bind(this))
+        axios.get('/api/rest/new?id=' + id)
+             .then(this.handleSuccessRest.bind(this))
+             .catch(this.handleErrorRest.bind(this))
+        // axios.get('/static/new.json?id=' + id)
+        //      .then(this.handleSuccessNews.bind(this))
+        //      .catch(this.handleErrorNews.bind(this))
       },
       handleSuccessNews (res) {
         let ret = (res.data) ? (res = res.data) : res
