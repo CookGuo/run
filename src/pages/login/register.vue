@@ -5,11 +5,21 @@
         <img src="../../../static/img/logo.jpg">
       </div>
       <h3 class="title">用户注册</h3>
-      <input class="txt" type="text" placeholder="请输入手机号" ref="username" @blur='handleBlur'>
-      <input class="txt" type="password" placeholder="请输入密码" ref="password">
+      <p class="info-txt">
+        <span class="reg-title" ref='regname'></span>
+        <input @focus='handleNameFoucs' class="txt" type="number" placeholder="请输入手机号" ref="username" @blur='handleBlur'>
+      </p>
+      <p class="info-txt">
+        <span class="reg-title" ref='regpwd'></span>
+        <input @focus='handlePwdFoucs' @blur='handlePwdBlur' class="txt" type="password" placeholder="请输入密码" ref="password">
+      </p>
       <div class="code">
-        <input class="code-txt" type="text" placeholder="请输入验证码" ref="codenum">
-        <button class="code-btn" @click='handleGetPhoneCode' ref='codeBtn'>获取验证码</button>
+        <span class="reg-code" ref='regcode'></span>
+        <div class="code-input">
+          <input class="code-txt" type="number" placeholder="请输入验证码" ref="codenum" @blur='handleBlurCode' @focus='handleCodeFoucs' >
+          <button class="code-btn" @click='handleGetPhoneCode' ref='codeBtn'>获取验证码</button>
+        </div>
+        
       </div>
       <button class="btn" @click="handleUserRegister">注册</button>
       <span class="log-reg" @click='handleToLogin'>已有账号？马上<a class="a-log">登录</a></span>
@@ -27,7 +37,9 @@
         password: '',
         time: 59,
         isCodeNum: true,
-        inputCode: ''
+        inputCode: '',
+        nameCheck: false,
+        pwdCheck: false
       }
     },
     methods: {
@@ -42,7 +54,7 @@
         //     .catch(this.handleUserRegisterErr.bind(this))
         axios({
           method: 'post',
-          url: '/api/reg',
+          url: '/api/user/reg',
           data: {
             username: this.username,
             password: this.password,
@@ -53,7 +65,7 @@
       },
       handleUserRegisterSucc (res) {
         res = (res.data) ? res.data : null
-        this.handleDataCorrect()
+        this.handleDataCorrect(res)
       },
       handleUserRegisterErr () {
         console.log('服务器连接失败')
@@ -85,34 +97,64 @@
         res = (res.data) ? res.data : null
         this.code = res.code
       },
-      handleDataCorrect () {
-        this.inputCode = this.$refs.codenum.value
-        if (this.inputCode !== this.code) {
-          alert('验证码输入错误')
-        } else if (this.inputCode === '') {
-          alert('请输入验证码')
-        } else if (this.inputCode === this.code && this.handleValidate(this.$refs.username.value)) {
-          this.$emit('toLogin')
+      handleDataCorrect (res) {
+        this.inputCode = Number(this.$refs.codenum.value)
+        if (res.error === false) {
+          this.$refs.regname.innerHTML = '用户名已注册'
+        } else {  
+          if (this.inputCode !== this.code) {
+            this.$refs.regcode.innerHTML = '验证码输入错误'
+          } else if (this.inputCode === '') {
+            this.$refs.regcode.innerHTML = '请输入验证码'
+          } else if (this.pwdCheck && this.nameCheck) {
+            this.$emit('toLogin')
+          }
         }
       },
       handleBlur () {
         this.handleValidate(this.$refs.username.value)
       },
-      handleValidate (phone) {
-        let mobileReg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
-        if (phone === '') {
-          alert('请输入手机号')
-        } else if (!mobileReg.test(phone)) {
-          alert('请输入正确的手机号')
+      handleBlurCode () {
+        let codeReg = /^\d{6}$/
+        if (!codeReg.test(this.$refs.codenum.value)) {
+            this.$refs.regcode.innerHTML = '验证码必须是六位'
         } else {
           return true
+        }
+      },
+      handleValidate (phone) {
+        let mobileReg = /^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/
+        if (!mobileReg.test(phone)) {
+          this.$refs.regname.innerHTML = '请输入正确的手机号'
+        } else {
+          this.nameCheck = true
+        }
+      },
+      handleNameFoucs () {
+        this.$refs.regname.innerHTML = ''
+      },
+      handleCodeFoucs () {
+        this.$refs.regcode.innerHTML = ''
+      },
+      handlePwdFoucs () {
+        this.$refs.regpwd.innerHTML = ''
+      },
+      handlePwdBlur () {
+        this.handleValidatePwd(this.$refs.password.value)
+      },
+      handleValidatePwd (pwd) {
+        let pwdReg = /^\w{6,12}$/
+        if (!pwdReg.test(pwd)) {
+          this.$refs.regpwd.innerHTML = '密码必须是6-12位数字/字母/下划线组合'
+        } else {
+          this.pwdCheck = true
         }
       }
     }
   }
 </script>
 
-<style>
+<style scoped>
   .register-wrap{
     text-align:center;
     position: absolute;
@@ -164,6 +206,14 @@
   .code{
     width: 5.4rem;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin:0 auto;
+    margin-bottom: .2rem;
+  }
+  .code-input{
+    width: 5.4rem;
+    display: flex;
     justify-content: space-between;
     margin:0 auto;
     margin-bottom: .2rem;
@@ -190,5 +240,18 @@
   }
   .a-log{
     text-decoration: underline;
+  }
+  .info-txt{
+    display: flex;
+    flex-direction: column;
+  }
+  .reg-title{
+    color: red;
+    margin-bottom: .05rem;
+  }
+  .reg-code{
+    margin-right:2.6rem;
+    color: red;
+    margin-bottom: .1rem;
   }
 </style>

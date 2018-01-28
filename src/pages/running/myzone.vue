@@ -18,22 +18,22 @@
           <div class="con-list" v-for="item in circleInfo" :key="item.id">
             <div class="con-item">
               <div class="circle-top border-bottom">
-                <img class="personal" :src="item.headImg" alt="">
+                <img class="personal" src="../../../static/img/tou1.jpg" alt="">
                 <div class="con-desc">
-                  <span class="nameID">{{item.name}}</span>
+                  <span class="nameID">{{item.title}}</span>
                   <span class="yi">一</span>
-                  <span class="describe">{{item.desc}}</span>
-                  <p class="circle-run">{{item.sign}}</p>
+                  <span class="describe">参加了骑行马拉松比赛</span>
+                  <p class="circle-run">跑步吗?骚年,我们一起去追风吧,做一个追风少年</p>
                 </div>
                 <span class="hot iconfont">&#xe621;</span>
               </div> 
               <div class="circle-bottom">
-                <img class="pub" :src="item.conImg" alt="">
-                <p class="pub-con">{{item.content}}</p>
+                <img class="pub" :src="item.img" alt="">
+                <p class="pub-con">{{item.summary}}</p>
                 <div class="address">
-                   <span class="addr iconfont">&#xe625;</span><span class="adr">{{item.address}}</span>
+                   <span class="addr iconfont">&#xe625;</span><span class="adr">{{item.city}}</span>
                 </div>
-                <p class="time">{{item.time}}</p>
+                <p class="time">{{item.createtime}}</p>
                 <div class="detailBtn">详情</div>
               </div>
             </div>

@@ -1,6 +1,3 @@
 {
-  "ret":true,
-  "data":{
-    "isRegiste":true
-  }
+  "success": false
 }

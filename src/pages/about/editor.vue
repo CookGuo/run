@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="editor">
     <div class="con-list">
       <div class="con-item">
         <div class="item-img">
@@ -7,8 +7,8 @@
         </div>
         <div class="item-info">
           <h3>个人信息</h3>
-          <span class="item-desc">家乡：<em ref="home">{{userinfo.city}}</em></span>
-          <span class="item-desc">昵称：<em ref="emotional">{{userinfo.nickname}}</em></span>
+          <span class="item-desc">家乡：<input ref='home' type="text" class="input-editor" maxlength=10 /></span>
+          <span class="item-desc">昵称：<input ref='emotional' type="text" class="input-editor" maxlength=10 /></span>
         </div>
       </div>
       <div class="con-item item-account">
@@ -57,6 +57,7 @@
           最近一周健身： <span class="cum-num">{{userinfo.latestFitness}}</span>
         </div>
       </div>
+      <div class="save" ref='save' @click='handleSaveInfo'>保存</div>
     </div>
   </div>
 </template>
@@ -64,20 +65,27 @@
 <script>
   export default {
     name: 'container',
+    data () {
+      return {
+        home: '',
+        emotional: ''
+      }
+    },
     props: {
       userinfo: Object
     },
     methods: {
-      handleChangeData (newHome, newEmotional) {
-        this.$refs.home.innerHTML = newHome
-        this.$refs.emotional.innerHTML = newEmotional
+      handleSaveInfo () {
+        this.home = this.$refs.home.value
+        this.emotional = this.$refs.emotional.value
+        this.$emit('change', this.home, this.emotional)
       }
     }
   }
 </script>
 
 <style scoped>
-  .container {
+  .editor {
     flex: 1;
     /*height: 6.88rem;*/
     background: #fff;
@@ -115,11 +123,10 @@
     margin-bottom: .21rem;
   }
   .item-desc{
-    display: block;
     width: 6rem;
     overflow: hidden;
     white-space: nowrap;
-    height: .22rem;
+    display: block;
     font-size: .22rem;
     margin-top: .11rem;
   }
@@ -157,5 +164,18 @@
   .cum-num{
     width: .66rem;
     display: block;
+  }
+  .input-editor{
+    border: .01rem solid #ccc;
+  }
+  .save{
+    height: .8rem;
+    width: 3rem;
+    border-radius: 5px;
+    background: #42c69a;
+    text-align: center;
+    line-height: .8rem;
+    color: #fff;
+    margin: .3rem auto;
   }
 </style>

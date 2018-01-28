@@ -1,7 +1,7 @@
 <template>
   <div class="recommend" ref='scroller'>
     <div>
-      <div class="list" v-for="item in reaList" :key="item.id"> 
+      <div class="list" v-for="item in reaList" :key="item.id" @click='handleClickToInfo(item.id)'> 
         <p class="title">{{item.title}}</p>
         <div class="img-box">
           <div class="img-cont" v-for="items in item.imgBox" :key="items.imgUrl">
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import BScroll from 'better-scroll'
   export default {
     name: 'rest',
@@ -37,6 +38,11 @@
       this.scroll = new BScroll(this.$refs.scroller, {
         probeType: 3
       })
+    },
+    methods: {
+      handleClickToInfo (id) { 
+        this.$router.push('/information/id=' + id)
+      }
     }
   }
 </script>

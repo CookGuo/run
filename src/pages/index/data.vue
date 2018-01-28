@@ -69,7 +69,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .data{
     flex: 1;
     width: 100%;
@@ -101,7 +101,6 @@
     display: flex;
     text-align: center;
     justify-content: space-around;
-    height: 84%;
   }
   .con-item{
     display: flex;

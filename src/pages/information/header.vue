@@ -1,25 +1,25 @@
 <template>
-  <div class="login-header">
+  <div class="info-header">
     <div class="header-cont">
       <i class="iconfont back" @click='handleBackIndex'>&#xe610;</i>
-  		我的
-  	</div>
+      新闻
+    </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'login-index',
+    name: 'info-header',
     methods: {
       handleBackIndex () {
-        this.$router.push('/about')
+        this.$router.push('/rest')
       }
     }
   }
 </script>
 
 <style scoped>
-  .login-header{
+  .info-header{
     height: .88rem;
     position: relative;
   }
