@@ -18,11 +18,11 @@
         <input placeholder="请输入标题...." ref="title" @click="handleFocus">
       </div>
       <div class="link">
-        <img src="../../../static/img/dd.png" alt="">
+        <img src="../../../static/img/ding.png" alt="">
         <input type="text" placeholder="请输入您的地址" ref="localtion" @click="handleFocus"> 
       </div>
       <div class="link">
-        <img src="../../../static/img/ding.png" alt="">
+        <img src="../../../static/img/dd.png" alt="">
         <select name="" id="" ref="select" @click="handleFocus">
           <option value="公开">公开</option>
           <option value="仅自己">仅自己</option>
@@ -60,7 +60,7 @@
         if (this.isBtn) {
           this.title = this.$refs.title.value
           this.summary = this.$refs.summary.innerHTML
-          this.city = this.$refs.select.value
+          this.city = this.$refs.localtion.value
           if (this.title && this.summary && this.city) {
             console.log(111)
 	          let file = this.$refs.img.files[0]

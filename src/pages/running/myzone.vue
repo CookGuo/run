@@ -131,14 +131,14 @@ export default {
     border-radius: .1rem;
   }
   .circle-top{
-    width: 6.7rem;
+    width: 100%;
     height: 1rem;
   }
   .personal{
     float: left;
     width: .8rem;
     height: .8rem;
-    margin: .1rem 0 0 .2rem;
+    margin: .1rem 0 0 .15rem;
   }
   .con-desc{
     float: left;
@@ -176,7 +176,7 @@ export default {
     float: right;
     font-size: .54rem;
     color: #e3483a;
-    margin: .2rem .18rem 0 0;
+    margin-top: .2rem;
   }
   .circle-bottom{
     position: relative;
@@ -193,11 +193,10 @@ export default {
     width: 3.8rem;
     font-size: .2rem;
     line-height: .26rem;
-    margin: .13rem 0 .1rem .15rem;
+    margin: .13rem 0;
   }
   .address{
     float: left;
-    width: 4rem;
     height: .2rem;
   }
   .addr{

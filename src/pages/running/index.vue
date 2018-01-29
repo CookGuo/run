@@ -72,6 +72,11 @@
             break
         }
         this.$refs.myZone.ref()
+      },
+      activited () {
+        axios.get('/api/circle/list')
+          .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataErr.bind(this))
       }
     }
   }
