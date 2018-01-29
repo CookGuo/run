@@ -36,15 +36,16 @@
       Topic
     },
     mounted () {
-      axios.get('/api/circle/list')
-          .then(this.handleGetDataSucc.bind(this))
-          .catch(this.handleGetDataErr.bind(this))
+      // axios.get('/api/circle/list')
+      //     .then(this.handleGetDataSucc.bind(this))
+      //     .catch(this.handleGetDataErr.bind(this))
       // axios.get('/static/running.json')
       //     .then(this.handleGetDataSucc.bind(this))
       //     .catch(this.handleGetDataErr.bind(this))
     },
     methods: {
-      handleGetDataSucc (res) {
+      handleGetDataSucc (res) { 
+        console.log(res)
         res = (res.data) ? res.data : null
         if (res) {
           this.circleInfo = res.other

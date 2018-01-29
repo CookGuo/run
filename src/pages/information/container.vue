@@ -22,7 +22,7 @@
   }
 </script>
 
-<style >
+<style scoped>
   .con-info{
     font-size: 12px;
     overflow: hidden;
