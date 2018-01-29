@@ -30,7 +30,7 @@
         checkphone: false,
         checkpassword: false,
         phone: false,
-        password: false
+        pwd: false
       }
     },
     methods: {
@@ -90,11 +90,11 @@
         var value = e.target.value
         var passwordReg = /^\w{6,12}$/
         if (!passwordReg.test(value)) {
-           this.checkpassword = true
-           this.password = false
+          this.checkpassword = true
+          this.pwd = false
         } else {
           this.checkpassword = false
-          this.password = true
+          this.pwd = true
         }
       },
       handleFocus () {

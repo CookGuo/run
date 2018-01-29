@@ -91,12 +91,12 @@
         var that = e.target
         var that_ = this
         var file = that.files[0]
-        var reader = new FileReader()   
+        var reader = new FileReader()
         reader.readAsDataURL(file)
-        if(file.name.indexOf("jpg") != -1 || file.name.indexOf("JPG") != -1 || file.name.indexOf("PNG") != -1 || file.name.indexOf("png") != -1) {
-            reader.onload = function (e) {
-              that_.$refs.imgshow.src = e.target.result
-            }
+        if (file.name.indexOf('jpg') !== -1 || file.name.indexOf('JPG') !== -1 || file.name.indexOf('PNG') !== -1 || file.name.indexOf('png') !== -1) {
+          reader.onload = function (e) {
+            that_.$refs.imgshow.src = e.target.result
+          }
         } else {
           alert('请选择正确的图片格式！')
         }
