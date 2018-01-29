@@ -47,21 +47,27 @@
         this.$emit('toLogin')
       },
       handleUserRegister () {
-        this.username = this.$refs.username.value
-        this.password = this.$refs.password.value
-        // axios.get('/api/registe.json')
-        //     .then(this.handleUserRegisterSucc.bind(this))
-        //     .catch(this.handleUserRegisterErr.bind(this))
-        axios({
-          method: 'post',
-          url: '/api/user/reg',
-          data: {
-            username: this.username,
-            password: this.password,
-            code: this.code
-          }
-        }).then(this.handleUserRegisterSucc.bind(this))
-        .catch(this.handleUserRegisterErr.bind(this))
+        if (this.$refs.username.value === '') {
+          this.$refs.regname.innerHTML = '用户名不能为空'
+        } else if (this.$refs.password.value === '') {
+          this.$refs.regpwd.innerHTML = '密码不能为空'
+        } else {
+          this.username = this.$refs.username.value
+          this.password = this.$refs.password.value
+          // axios.get('/api/registe.json')
+          //     .then(this.handleUserRegisterSucc.bind(this))
+          //     .catch(this.handleUserRegisterErr.bind(this))
+          axios({
+            method: 'post',
+            url: '/api/user/reg',
+            data: {
+              username: this.username,
+              password: this.password,
+              code: this.code
+            }
+          }).then(this.handleUserRegisterSucc.bind(this))
+          .catch(this.handleUserRegisterErr.bind(this))
+        }
       },
       handleUserRegisterSucc (res) {
         res = (res.data) ? res.data : null
@@ -143,9 +149,9 @@
         this.handleValidatePwd(this.$refs.password.value)
       },
       handleValidatePwd (pwd) {
-        let pwdReg = /^\w{6,12}$/
+        let pwdReg = /^[A-Za-z0-9]{6,12}$/
         if (!pwdReg.test(pwd)) {
-          this.$refs.regpwd.innerHTML = '密码必须是6-12位数字/字母/下划线组合'
+          this.$refs.regpwd.innerHTML = '密码必须是6-12位数字/字母组合'
         } else {
           this.pwdCheck = true
         }
