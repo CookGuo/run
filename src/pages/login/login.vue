@@ -44,6 +44,9 @@
           this.checkpassword = true
           this.checkphone = true
         } else {
+          // axios.get('/api/userlogin.json')
+          //     .then(this.handleUserLoginSucc.bind(this))
+          //     .catch(this.handleUserLoginErr.bind(this))
           if (this.handleValidate(this.$refs.loginUser.value)) {
             this.username = this.$refs.loginUser.value
             this.password = this.$refs.loginPwd.value

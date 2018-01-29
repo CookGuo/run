@@ -62,44 +62,43 @@
           this.summary = this.$refs.summary.innerHTML
           this.city = this.$refs.localtion.value
           if (this.title && this.summary && this.city) {
-            console.log(111)
-	          let file = this.$refs.img.files[0]
-	          let param = new FormData()
-	          param.append('file', file, file.name)
-	          param.append('title', this.title)
-	          param.append('summary', this.summary)
-	          param.append('city', this.city)
-	          let config = {
-	            headers: { 'Content-Type': 'multipart/form-data' }
-	          }
-	          axios.post('/api/circle/add', param, config)
-	          .then((res) => {
-	            if (res) {
-	            	res = (res.data) ? res.data : null
-	            	if (res && res.success) {
-	            		this.$push('/running')
-	            	}
-	            }
-	          })
-	        } else {
+            let file = this.$refs.img.files[0]
+            let param = new FormData()
+            param.append('file', file, file.name)
+            param.append('title', this.title)
+            param.append('summary', this.summary)
+            param.append('city', this.city)
+            let config = {
+              headers: { 'Content-Type': 'multipart/form-data' }
+            }
+            axios.post('/api/circle/add', param, config)
+            .then((res) => {
+              if (res) {
+                res = (res.data) ? res.data : null
+                if (res && res.success) {
+                  this.$push('/running')
+                }
+              }
+            })
+          } else {
             this.isp = true
           }
         } else {
           this.$router.push('/login')
         }
       },
-      handleImgChange(e) {
+      handleImgChange (e) {
         var that = e.target
         var that_ = this
         var file = that.files[0]
         var reader = new FileReader()   
         reader.readAsDataURL(file)
-        if(file.name.indexOf("jpg") != -1 || file.name.indexOf("JPG") != -1 || file.name.indexOf("PNG") != -1 || file.name.indexOf("png") != -1) {   
-            reader.onload = function(e){
-               that_.$refs.imgshow.src = e.target.result
+        if(file.name.indexOf("jpg") != -1 || file.name.indexOf("JPG") != -1 || file.name.indexOf("PNG") != -1 || file.name.indexOf("png") != -1) {
+            reader.onload = function (e) {
+              that_.$refs.imgshow.src = e.target.result
             }
-        }else {
-          alert("请选择正确的图片格式！")
+        } else {
+          alert('请选择正确的图片格式！')
         }
       },
       handleFocus () {
@@ -108,7 +107,6 @@
     },
     mounted () {
       if (!document.cookie.userid) {
-        console.log(145)
         this.isBtn = true
       } else {
         console.log(document.cookie)

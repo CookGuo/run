@@ -38,15 +38,21 @@
         index === 2 && this.$router.push({ path: '/issue' })
         index === 3 && this.$router.push({ path: '/rest' })
         index === 4 && this.$router.push({ path: '/about' })
+      },
+      handleIsRouter () {
+        let location = window.location
+        location.href.split('#/')[1] === '' && this.handleRouter(0)
+        location.href.split('#/')[1] === 'running' && this.handleRouter(1)
+        location.href.split('#/')[1] === 'issue' && this.handleRouter(2)
+        location.href.split('#/')[1] === 'rest' && this.handleRouter(3)
+        location.href.split('#/')[1] === 'about' && this.handleRouter(4)
       }
     },
+    created () {
+      this.handleIsRouter()
+    },
     activated () {
-      let location = window.location
-      location.href.split('#/')[1] === '' && this.handleRouter(0)
-      location.href.split('#/')[1] === 'running' && this.handleRouter(1)
-      location.href.split('#/')[1] === 'issue' && this.handleRouter(2)
-      location.href.split('#/')[1] === 'rest' && this.handleRouter(3)
-      location.href.split('#/')[1] === 'about' && this.handleRouter(4)
+      this.handleIsRouter()
     }
   }
 </script>

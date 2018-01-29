@@ -7,6 +7,7 @@ import About from '@/pages/about/index'
 import Login from '@/pages/login/index'
 import Details from '@/pages/details/index'
 import Issue from '@/pages/issue/index'
+import Information from '@/pages/information/index'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/issue',
       name: 'Issue',
       component: Issue
+    },
+    {
+      path: '/information/:id',
+      name: 'Information',
+      component: Information
     }
   ]
 })
