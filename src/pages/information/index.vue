@@ -40,6 +40,12 @@
       }
     },
     created () {
+      console.log(123)
+      let id = this.$router.history.current.params.id.substring(3)
+      this.handleToNews(id)
+    },
+    activated () {
+      console.log(123)
       let id = this.$router.history.current.params.id.substring(3)
       this.handleToNews(id)
     }
