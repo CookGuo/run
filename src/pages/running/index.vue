@@ -44,7 +44,7 @@
       //     .catch(this.handleGetDataErr.bind(this))
     },
     methods: {
-      handleGetDataSucc (res) { 
+      handleGetDataSucc (res) {
         console.log(res)
         res = (res.data) ? res.data : null
         if (res) {

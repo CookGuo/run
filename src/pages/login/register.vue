@@ -78,7 +78,7 @@
         console.log('服务器连接失败')
       },
       handleGetPhoneCode () {
-        this.randomcode = this.getRandomCode();
+        this.randomcode = this.getRandomCode()
         if (this.isCodeNum) {
           this.isCodeNum = false
           if (this.$refs.username.value) {
@@ -100,16 +100,16 @@
               method: 'post',
               url: '/code',
               data: {
-                sid: 'bbcf4dd1920b2f6e3f1dfab86ce1aa96', 
-                token: 'd4ea631cbf617638388d3b1c2216d336', 
-                appid: 'c9a69818c8404ff2ad85975d92140f3f', 
-                templateid: '299745',  
+                sid: 'bbcf4dd1920b2f6e3f1dfab86ce1aa96',
+                token: 'd4ea631cbf617638388d3b1c2216d336',
+                appid: 'c9a69818c8404ff2ad85975d92140f3f',
+                templateid: '299745',
                 mobile: this.username,
                 param: this.randomcode
               },
               headers: {
-                "Content-Type": "application/json;charset=utf-8",
-                "Accept": "application/json"
+                'Content-Type': 'application/json;charset=utf-8',
+                'Accept': 'application/json'
               }
             })
             .then(this.handlePhoneCodeSucc.bind(this))
@@ -174,11 +174,11 @@
         }
       },
       getRandomCode () {
-        var str = '';
-        for(let i = 0; i < 6; i++){
-          str += parseInt(Math.random()*10);
+        var str = ''
+        for (let i = 0; i < 6; i++) {
+          str += parseInt(Math.random() * 10)
         }
-        return str;
+        return str
       }
     }
   }

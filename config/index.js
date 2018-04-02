@@ -24,6 +24,14 @@ module.exports = {
                 '/code': '/'
             },
             changeOrigin: true
+        },
+        "/map": {
+            target: "https://m.amap.com/navi/",
+            logLevel: 'debug',
+            pathRewrite: {
+                '/map': '/'
+            },
+            changeOrigin: true
         }
     },
 
