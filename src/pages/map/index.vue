@@ -1,138 +1,107 @@
-<!-- <template>
- <div class="map">
-   <el-amap vid="amap" :plugin="plugin" class="amap-demo"></el-amap>
-   <div class="container"></div>
- </div>
-</template>
-<script>
-  import axios from 'axios'
-  export default {
-    name: 'app',
-    data () {
-      let self = this
-      return {
-        positions: {
-          lng: '',
-          lat: '',
-          address: '',
-          loaded: false
-        },
-        center: [121.59996, 31.197646],
-        plugin: [{
-          pName: 'Geolocation',
-          events: {
-            init (o) {
-              o.getCurrentPosition((status, result) => {
-                if (result && result.position) {
-                  self.str = result.formattedAddress
-                  self.positions.address = self.str.substring(self.str.indexOf('市') + 1)
-                  self.positions.lng = result.position.lng
-                  self.positions.lat = result.position.lat
-                  self.positions.loaded = true
-                  self.$nextTick()
-                  axios.get('/map?dest=' + self.positions.lng + ',' + self.positions.lat + '&hideRouteIcon=1&key=1d1f79ae4bc33f3215ecabdc975d6fd8')
-                }
-              })
+<template>
+    <div class="amap-page-container">
+      <div class="amap-header">
+        <i class="iconfont back" @click='handleBackIndex'>&#xe610;</i>
+        地图
+      </div>
+      <el-amap vid="amap"  :zoom="zoom" :plugin="plugin" class="amap-demo" :center="center">
+        <el-amap-polygon v-for="(polygon, index) in polygons" :vid="index" :ref="`polygon_${index}`" :path="polygon.path" :events="polygon.events"></el-amap-polygon>
+      </el-amap>
+      <div class="toolbar">
+        <span v-if="loaded">
+          location: lng = {{ lng }} lat = {{ lat }}
+        </span>
+        <span v-else>正在定位</span>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    module.exports = {
+      data () {
+        let self = this
+        let arr = []
+        let brr = []
+        return {
+          zoom: 14,
+          center: [117.13736, 36.197646],
+          lng: 0,
+          lat: 0,
+          loaded: false,
+          plugin: [{
+            pName: 'Geolocation',
+            events: {
+              init (o) {
+                // o 是高德地图定位插件实例
+                // setInterval(() => {
+                  o.getCurrentPosition((status, result) => {
+                    if (result && result.position) {
+                      self.lng = result.position.lng
+                      self.lat = result.position.lat
+                      self.center = [self.lng, self.lat]
+                      self.loaded = true
+                      arr = [self.lng, self.lat]
+                      brr.push(arr)
+                      self.$nextTick()
+                    }
+                  })
+                // }, 4000)
+              }
             }
-          }
-        }]
+          }, {
+            pName: 'Scale',
+            events: {
+              init (instance) {}
+            }
+          }, {
+            pName: 'ToolBar',
+            ruler: true,
+            direction: true,
+            liteStyle: false,
+            events: {
+              init (instance) {
+                console.log(instance)
+              }
+            }
+          }],
+          polygons: [
+            {
+              path: brr
+            }
+          ]
+        }
+      },
+      methods: {
+        handleBackIndex () {
+          this.$router.push('/')
+        }
       }
     }
-  }
 </script>
 
 <style scoped>
-  .map{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+  .amap-header{
+    height: .88rem;
+    background: #42c69a;
+    line-height: .88rem;
+    text-align: center;
+    color: #fff;
+    font-size: .34rem;
   }
   .amap-demo {
-    display: block;
+    height: 300px;
   }
-</style> -->
-
-<template>
-  <div>
-    <div class="amap-page-container">
-      <el-amap vid="amapDemo" :zoom="zoom" :center="center" class="amap-demo" :plugin="plugin">
-        <el-amap-info-window  :position="mywindow.position" :content="mywindow.content" :visible="mywindow.visible" :events="mywindow.events"></el-amap-info-window>
-        <el-amap-marker :position="marker.position" :events="marker.events" :draggable="marker.draggable"></el-amap-marker>
-       <!--  <el-amap-circle :center="circle.center" :radius="circle.radius" :fillOpacity="circle.fillOpacity" :events="circle.events" :strokeColor="circle.strokeColor" :strokeStyle="circle.strokeStyle" :fillColor="circle.fillColor"></el-amap-circle> -->
-      </el-amap>
-    </div>
-  </div>
-</template>
-
-<style>
-  .amap-page-container {
-    height: 500px;
+  .back{
+    position: absolute;
+    left: .3rem;
+    top: 0;
+    bottom: 0;
+    line-height: .88rem;
+    font-size: .4rem;
   }
 </style>
-
-
-<script>
-export default {
-  data () {
-    return {
-      zoom: 15,
-      center: [121.5273285, 31.21515044],
-      circle: {
-        clickable: true,
-        center: [121.5273285, 31.21515044],
-        radius: 200,
-        fillOpacity: 0.3,
-        strokeStyle: 'dashed',
-        fillColor: '#FFFF00',
-        strokeColor: '#00BFFF'
-      },
-      marker: {
-        position: [121.5273285, 31.21515044],
-        events: {
-          click: () => {
-            if (this.mywindow.visible === true) {
-              this.mywindow.visible = false
-            } else {
-              this.mywindow.visible = true
-            }
-          },
-          dragend: (e) => {
-            this.markers[0].position = [e.lnglat.lng, e.lnglat.lat]
-          }
-        },
-        visible: true,
-        draggable: false
-      },
-      mywindow: {
-        position: [121.5273285, 31.21515044],
-        visible: true,
-        events: {
-          close () {
-            this.mywindow.visible = false
-          }
-        }
-      },
-      plugin: {
-        pName: 'Scale',
-        events: {
-          init (o) {
-            o.getCurrentPosition((status, result) => {
-              if (result && result.position) {
-                self.str = result.formattedAddress
-                self.positions.address = self.str.substring(self.str.indexOf('市') + 1)
-                self.positions.lng = result.position.lng
-                self.positions.lat = result.position.lat
-                self.positions.loaded = true
-                self.$nextTick()
-                axios.get('/map?dest=' + self.positions.lng + ',' + self.positions.lat + '&hideRouteIcon=1&key=1d1f79ae4bc33f3215ecabdc975d6fd8')
-              }
-            })
-          },
-        }
-      }
-    }
+<style>
+  .amap-geolocation-con, .amap-locate-loading{
+    top: 0.5rem!important;
   }
-}
-</script>
+</style>

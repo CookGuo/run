@@ -1,7 +1,8 @@
 <template>
   <div class="index-content">
     <ul>
-      <li class="con-list" ref='pwd' @click='handleClick()'>修改密码</li>
+      <li class="con-list" ref='address' @click='handleClick()'>当前位置</li>
+      <li class="con-list" ref='pwd' @click='handleUpdatePwd()'>修改密码</li>
     </ul>
   </div>
 </template>
@@ -12,6 +13,9 @@
     methods: {
       handleClick () {
         this.$router.push('./map')
+      },
+      handleUpdatePwd () {
+        this.$router.push('./userinfo')
       }
     }
   }
