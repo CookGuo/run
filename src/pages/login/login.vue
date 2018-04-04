@@ -30,7 +30,7 @@
         checkphone: false,
         checkpassword: false,
         phone: false,
-        password: false
+        pwd: false
       }
     },
     methods: {
@@ -63,8 +63,8 @@
       },
       handleUserLoginSucc (res) {
         res = (res.data) ? res.data : null
-        if ((res.other && this.handleValidate(this.$refs.loginUser.value)) || (res.other)) {
-          document.cookie = 'userid =' + res.other
+        if ((res.data.login && this.handleValidate(this.$refs.loginUser.value)) || (res.data.login)) {
+          // document.cookie = 'userid =' + res.data.login
           this.$router.push('/about')
         }
       },
@@ -90,11 +90,11 @@
         var value = e.target.value
         var passwordReg = /^\w{6,12}$/
         if (!passwordReg.test(value)) {
-           this.checkpassword = true
-           this.password = false
+          this.checkpassword = true
+          this.pwd = false
         } else {
           this.checkpassword = false
-          this.password = true
+          this.pwd = true
         }
       },
       handleFocus () {

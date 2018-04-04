@@ -86,10 +86,10 @@
                 this.$refs.codeBtn.innerHTML = '获取验证码'
               }
             }, 1000)
-            axios.get('/api/user/code?username=' + this.username)
-            .then(this.handlePhoneCodeSucc.bind(this))
-            // axios.get('/api/code.json')
+            // axios.get('/api/user/code?username=' + this.username)
             // .then(this.handlePhoneCodeSucc.bind(this))
+            axios.get('/static/code.json')
+            .then(this.handlePhoneCodeSucc.bind(this))
           }
         }
       },
