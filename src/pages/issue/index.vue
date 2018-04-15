@@ -3,7 +3,7 @@
     <div class="header">发布动态</div>
     <div class="content">
       <div class="input" >
-        <div contenteditable="true" class="input-info" ref="summary" @click="handleFocus">这一刻你想说的话。。。</div>
+        <div contenteditable="true" class="input-info" ref="summary" @click="handleFocus" @change="handleDivChange">这一刻你想说的话。。。</div>
         <div class="input-cont">
           <div class="img-box">
             <img src="" alt="" ref="imgshow">
@@ -60,7 +60,7 @@
         if (this.isBtn) {
           this.title = this.$refs.title.value
           this.summary = this.$refs.summary.innerHTML
-          this.city = this.$refs.select.value
+          this.city = this.$refs.localtion.value
           if (this.title && this.summary && this.city) {
             let file = this.$refs.img.files[0]
             let param = new FormData()
@@ -103,6 +103,9 @@
       },
       handleFocus () {
         this.isp = false
+      },
+      handleDivChange (e) {
+        console.log(e.target.value)
       }
     },
     mounted () {

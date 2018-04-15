@@ -35,18 +35,19 @@
       RestBottom
     },
     mounted () {
+      // axios.get('/api/rest/list')
+      //      .then(this.handleSuccessRest.bind(this))
+      //      .catch(this.handleErrorRest.bind(this))
       axios.get('/api/rest/list')
            .then(this.handleSuccessRest.bind(this))
            .catch(this.handleErrorRest.bind(this))
-      // axios.get('/static/rest.json')
-      //      .then(this.handleSuccessRest.bind(this))
-      //      .catch(this.handleErrorRest.bind(this))
     },
     methods: {
       handleSuccessRest (res) {
+        console.log(res)
         let ret = (res.data) ? (res = res.data) : res
         ret && (this.videoList = ret.data.video)
-        ret && (this.reaVideo = ret.data.reaVideo)
+        ret && (this.reaVideo = ret.data.video)
         ret && (this.reaList = ret.data.reaList)
       },
       handleErrorRest (err) {
@@ -65,6 +66,8 @@
             this.flagCom = false
             break
           case 2:
+          case 3:
+          case 4:
             this.flagVideo = false
             this.flagRea = true
             this.flagCom = false

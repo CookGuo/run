@@ -16,9 +16,6 @@
       <p class="top-text">MY CIRCLE</p>
       <p class="top-text">运动之后享受美好惬意的时光</p>
     </div>
-    <div class="header-input">
-      <input class="input" placeholder="请输入搜索内容"></input>
-    </div>
     <div class="header-nav">
       <div class="nav-item" v-for="(item, index) in navItem" :class="{'nav-active': item.show}" @click='handleNavClick(index)' :key='item.id'>
         {{item.tab}}

@@ -43,13 +43,7 @@
     line-height: 30px;
     padding: .4rem .427rem;
   }
-  .con-main img{
-    width: 100%;
-  }
-  .img-cont{
-    margin-bottom: .3rem;
-  }
-  .img{
-    width: 100%;
+  .con-desc .con-desc img{
+    width: 100%!important;
   }
 </style>

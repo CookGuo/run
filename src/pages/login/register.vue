@@ -39,7 +39,8 @@
         isCodeNum: true,
         inputCode: '',
         nameCheck: false,
-        pwdCheck: false
+        pwdCheck: false,
+        randomcode: ''
       }
     },
     methods: {
@@ -47,21 +48,27 @@
         this.$emit('toLogin')
       },
       handleUserRegister () {
-        this.username = this.$refs.username.value
-        this.password = this.$refs.password.value
-        // axios.get('/api/registe.json')
-        //     .then(this.handleUserRegisterSucc.bind(this))
-        //     .catch(this.handleUserRegisterErr.bind(this))
-        axios({
-          method: 'post',
-          url: '/api/user/reg',
-          data: {
-            username: this.username,
-            password: this.password,
-            code: this.code
-          }
-        }).then(this.handleUserRegisterSucc.bind(this))
-        .catch(this.handleUserRegisterErr.bind(this))
+        if (this.$refs.username.value === '') {
+          this.$refs.regname.innerHTML = '用户名不能为空'
+        } else if (this.$refs.password.value === '') {
+          this.$refs.regpwd.innerHTML = '密码不能为空'
+        } else {
+          this.username = this.$refs.username.value
+          this.password = this.$refs.password.value
+          // axios.get('/api/registe.json')
+          //     .then(this.handleUserRegisterSucc.bind(this))
+          //     .catch(this.handleUserRegisterErr.bind(this))
+          axios({
+            method: 'post',
+            url: '/api/user/reg',
+            data: {
+              username: this.username,
+              password: this.password,
+              code: this.code
+            }
+          }).then(this.handleUserRegisterSucc.bind(this))
+          .catch(this.handleUserRegisterErr.bind(this))
+        }
       },
       handleUserRegisterSucc (res) {
         res = (res.data) ? res.data : null
@@ -71,6 +78,7 @@
         console.log('服务器连接失败')
       },
       handleGetPhoneCode () {
+        this.randomcode = this.getRandomCode()
         if (this.isCodeNum) {
           this.isCodeNum = false
           if (this.$refs.username.value) {
@@ -86,20 +94,35 @@
                 this.$refs.codeBtn.innerHTML = '获取验证码'
               }
             }, 1000)
-            // axios.get('/api/user/code?username=' + this.username)
+            // axios.get('/static/code.json')
             // .then(this.handlePhoneCodeSucc.bind(this))
-            axios.get('/static/code.json')
+            axios({
+              method: 'post',
+              url: '/code',
+              data: {
+                sid: 'bbcf4dd1920b2f6e3f1dfab86ce1aa96',
+                token: 'd4ea631cbf617638388d3b1c2216d336',
+                appid: 'c9a69818c8404ff2ad85975d92140f3f',
+                templateid: '299745',
+                mobile: this.username,
+                param: this.randomcode
+              },
+              headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Accept': 'application/json'
+              }
+            })
             .then(this.handlePhoneCodeSucc.bind(this))
           }
         }
       },
       handlePhoneCodeSucc (res) {
         res = (res.data) ? res.data : null
-        this.code = res.code
+        this.code = this.randomcode
       },
       handleDataCorrect (res) {
-        this.inputCode = Number(this.$refs.codenum.value)
-        if (res.error === false) {
+        this.inputCode = this.$refs.codenum.value
+        if (res.data.register === false) {
           this.$refs.regname.innerHTML = '用户名已注册'
         } else {
           if (this.inputCode !== this.code) {
@@ -143,12 +166,19 @@
         this.handleValidatePwd(this.$refs.password.value)
       },
       handleValidatePwd (pwd) {
-        let pwdReg = /^\w{6,12}$/
+        let pwdReg = /^[A-Za-z0-9]{6,12}$/
         if (!pwdReg.test(pwd)) {
-          this.$refs.regpwd.innerHTML = '密码必须是6-12位数字/字母/下划线组合'
+          this.$refs.regpwd.innerHTML = '密码必须是6-12位数字/字母组合'
         } else {
           this.pwdCheck = true
         }
+      },
+      getRandomCode () {
+        var str = ''
+        for (let i = 0; i < 6; i++) {
+          str += parseInt(Math.random() * 10)
+        }
+        return str
       }
     }
   }

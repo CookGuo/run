@@ -45,6 +45,7 @@
     },
     methods: {
       handleGetDataSucc (res) {
+        console.log(res)
         res = (res.data) ? res.data : null
         if (res) {
           this.circleInfo = res.data.circle
@@ -73,6 +74,11 @@
             break
         }
         this.$refs.myZone.ref()
+      },
+      activited () {
+        axios.get('/api/circle/list')
+          .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataErr.bind(this))
       }
     }
   }
