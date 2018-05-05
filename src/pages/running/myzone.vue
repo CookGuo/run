@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     ref () {
+      console.log(this.circleInfo)
       if (!this.scroll) {
         this.scroll = new BScroll(this.$refs.boxlist)
       } else {
@@ -148,9 +149,12 @@ export default {
   }
   .nameID{
     float: left;
-    width: 1.48rem;
+    max-width: 1.48rem;
     font-size: .27rem;
     font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     margin: .12rem 0 0 0; 
   }
   .yi{
@@ -161,13 +165,20 @@ export default {
   }
   .describe{
     float: left;
-    width: 2.4rem;
+    max-width: 3.6rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     font-size: .17rem;
     color: #e3483a;
     margin:.15rem 0 0 .2rem;
   }
   .circle-run{
     float: left;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: .48rem;
     font-size: .07rem;
     margin-top: .08rem;
     color: #959595;
@@ -177,23 +188,27 @@ export default {
     font-size: .54rem;
     color: #e3483a;
     margin-top: .2rem;
+    margin-right: .1rem;
   }
   .circle-bottom{
     position: relative;
     height: 2.1rem;
   }
   .pub{
-    width:2.44rem;
+    width:2.2rem;
     height:1.72rem;
     float: left;
     margin: .1rem 0 0 .2rem;
   }
   .pub-con{
     float: left;
-    width: 3.8rem;
+    width: 3.6rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 1rem;
     font-size: .2rem;
     line-height: .26rem;
-    margin: .13rem 0;
+    margin: .13rem 0 .13rem .13rem;
   }
   .address{
     float: left;
@@ -205,6 +220,7 @@ export default {
     margin-left:.2rem;
     color: #e3483a;
     font-weight: bold;
+    font-size: 9px;
   }
   .adr{
     display: block;
@@ -215,7 +231,7 @@ export default {
   }
   .time{
     float: left;
-    margin: .2rem 0 0 .2rem;
+    margin: .04rem 0 0 .13rem;
     font-size: .12rem;
     color: #e3483a;
   }

@@ -52,7 +52,7 @@
       handleUserInfoSucc (res) {
         res = (res.data) ? res.data : null
         if (res) {
-          this.userinfo = res.data.userInfo
+          this.userinfo = res.data.userInfo[0]
         }
       },
       handleUserInfoErr () {
@@ -63,7 +63,7 @@
       },
       handleChangeSaveInfo (nickname, signature, home, emotional) {
         axios.post('/api/user/update', {
-          userid: this.getCookie(),
+          id: this.getCookie(),
           nickname: nickname,
           signature: signature,
           home: home,

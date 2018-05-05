@@ -35,21 +35,27 @@
       Hot,
       Topic
     },
+    watch: {
+      $route (to, from) {
+        this.getAxios()
+      }
+    },
     mounted () {
-      axios.get('/api/circle/list')
-          .then(this.handleGetDataSucc.bind(this))
-          .catch(this.handleGetDataErr.bind(this))
+      this.getAxios()
       // axios.get('/static/running.json')
       //     .then(this.handleGetDataSucc.bind(this))
       //     .catch(this.handleGetDataErr.bind(this))
     },
     methods: {
+      getAxios () {
+        axios.get('/api/circle/list')
+          .then(this.handleGetDataSucc.bind(this))
+          .catch(this.handleGetDataErr.bind(this))
+      },
       handleGetDataSucc (res) {
-        console.log(res)
         res = (res.data) ? res.data : null
         if (res) {
-          this.circleInfo = res.data.circle
-          console.log(res.data.circle[0].headImg)
+          this.circleInfo = res.data.other
         }
       },
       handleGetDataErr () {

@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <details-header></details-header>
-    <introduce></introduce>
+    <introduce :detaList = "detaList"></introduce>
     <project></project>
     <activity></activity>
     <contact></contact>
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import DetailsHeader from './header'
   import Introduce from './introduce'
   import Project from './project'
@@ -18,6 +19,11 @@
   import DetailBottom from './bottom'
   export default {
     name: 'details-index',
+    data () {
+      return {
+        detaList: {}
+      }
+    },
     components: {
       DetailsHeader,
       Introduce,
@@ -25,6 +31,28 @@
       Activity,
       Contact,
       DetailBottom
+    },
+    create () {
+      this.getAxios()
+    },
+    activated () {
+      this.getAxios()
+    },
+    methods: {
+      getAxios () {
+        axios.get('/api/circle/detail?id=' + this.$route.query.id)
+            .then(this.handleGetDetailSucc.bind(this))
+            .catch(this.handleGetDetailErr.bind(this))
+      },
+      handleGetDetailSucc (res) {
+        res = (res.data) ? res.data : null
+        if (res) {
+          this.detaList = res.data.detail[0]
+        }
+      },
+      handleGetDetailErr () {
+        console.log('error')
+      }
     }
   }
 </script>

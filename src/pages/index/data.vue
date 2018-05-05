@@ -51,7 +51,7 @@
       handletTransition () {
         for (let i = 0; i < this.domArr.length; i++) {
           this.domArr[i].timer = setInterval(() => {
-            this.domArr[i].style.height = ++this.number + 'px'
+            this.domArr[i].style.height = ++this.number + '%'
           }, 30)
         }
       },
